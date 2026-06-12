@@ -1,0 +1,211 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "gleif": "https://www.gleif.org/ontology/Base/",
+    "lei": "https://www.gleif.org/ontology/L1/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+
+    "LEIRecord": {
+      "@id": "lei:LEIRecord",
+      "@type": "@id"
+    },
+    "LEI": {
+      "@id": "gleif:LEI",
+      "@type": "xsd:string"
+    },
+    "legalName": {
+      "@id": "lei:hasLegalName",
+      "@type": "xsd:string"
+    },
+    "legalAddress": {
+      "@id": "lei:hasLegalAddress",
+      "@type": "@id"
+    },
+    "headquartersAddress": {
+      "@id": "lei:hasHeadquartersAddress",
+      "@type": "@id"
+    },
+    "jurisdiction": {
+      "@id": "lei:hasJurisdiction",
+      "@type": "xsd:string"
+    },
+    "legalForm": {
+      "@id": "lei:hasLegalForm",
+      "@type": "@id"
+    },
+    "entityStatus": {
+      "@id": "lei:hasEntityStatus",
+      "@type": "@id"
+    },
+    "registrationStatus": {
+      "@id": "lei:hasRegistrationStatus",
+      "@type": "@id"
+    },
+    "initialRegistrationDate": {
+      "@id": "lei:hasInitialRegistrationDate",
+      "@type": "xsd:dateTime"
+    },
+    "lastUpdateDate": {
+      "@id": "lei:hasLastUpdateDate",
+      "@type": "xsd:dateTime"
+    },
+    "nextRenewalDate": {
+      "@id": "lei:hasNextRenewalDate",
+      "@type": "xsd:dateTime"
+    },
+    "managingLOU": {
+      "@id": "lei:hasManagingLOU",
+      "@type": "@id"
+    },
+    "corroborationLevel": {
+      "@id": "lei:hasCorroborationLevel",
+      "@type": "@id"
+    },
+    "registeredAt": {
+      "@id": "lei:hasRegistrationAuthority",
+      "@type": "@id"
+    },
+    "registeredAs": {
+      "@id": "lei:hasRegistrationAuthorityEntityID",
+      "@type": "xsd:string"
+    },
+    "bic": {
+      "@id": "gleif:hasBIC",
+      "@type": "xsd:string"
+    },
+    "isin": {
+      "@id": "gleif:hasISIN",
+      "@type": "xsd:string"
+    },
+    "mic": {
+      "@id": "gleif:hasMIC",
+      "@type": "xsd:string"
+    },
+
+    "Address": {
+      "@id": "schema:PostalAddress",
+      "@type": "@id"
+    },
+    "addressLines": {
+      "@id": "schema:streetAddress",
+      "@type": "xsd:string"
+    },
+    "city": {
+      "@id": "schema:addressLocality",
+      "@type": "xsd:string"
+    },
+    "region": {
+      "@id": "schema:addressRegion",
+      "@type": "xsd:string"
+    },
+    "country": {
+      "@id": "schema:addressCountry",
+      "@type": "xsd:string"
+    },
+    "postalCode": {
+      "@id": "schema:postalCode",
+      "@type": "xsd:string"
+    },
+
+    "LegalEntityIdentifierIssuer": {
+      "@id": "lei:LegalEntityIdentifierIssuer",
+      "@type": "@id"
+    },
+    "accreditationDate": {
+      "@id": "lei:hasAccreditationDate",
+      "@type": "xsd:dateTime"
+    },
+
+    "EntityLegalForm": {
+      "@id": "lei:EntityLegalForm",
+      "@type": "@id"
+    },
+    "elfCode": {
+      "@id": "lei:hasELFCode",
+      "@type": "xsd:string"
+    },
+
+    "RegistrationAuthority": {
+      "@id": "lei:RegistrationAuthority",
+      "@type": "@id"
+    },
+    "raCode": {
+      "@id": "lei:hasRegistrationAuthorityCode",
+      "@type": "xsd:string"
+    },
+
+    "successorEntity": {
+      "@id": "lei:hasSuccessorEntity",
+      "@type": "@id"
+    },
+    "associatedEntity": {
+      "@id": "lei:hasAssociatedEntity",
+      "@type": "@id"
+    },
+    "directParent": {
+      "@id": "lei:hasDirectParent",
+      "@type": "@id"
+    },
+    "ultimateParent": {
+      "@id": "lei:hasUltimateParent",
+      "@type": "@id"
+    },
+    "directChild": {
+      "@id": "lei:hasDirectChild",
+      "@type": "@id"
+    },
+    "ultimateChild": {
+      "@id": "lei:hasUltimateChild",
+      "@type": "@id"
+    },
+
+    "goldenCopyPublishDate": {
+      "@id": "gleif:hasGoldenCopyPublishDate",
+      "@type": "xsd:dateTime"
+    },
+
+    "EntityStatus": {
+      "@id": "lei:EntityStatus",
+      "@type": "@id"
+    },
+    "ACTIVE": {
+      "@id": "lei:EntityStatusActive"
+    },
+    "INACTIVE": {
+      "@id": "lei:EntityStatusInactive"
+    },
+
+    "RegistrationStatus": {
+      "@id": "lei:RegistrationStatus",
+      "@type": "@id"
+    },
+    "ISSUED": {
+      "@id": "lei:RegistrationStatusIssued"
+    },
+    "LAPSED": {
+      "@id": "lei:RegistrationStatusLapsed"
+    },
+    "MERGED": {
+      "@id": "lei:RegistrationStatusMerged"
+    },
+    "RETIRED": {
+      "@id": "lei:RegistrationStatusRetired"
+    },
+
+    "CorroborationLevel": {
+      "@id": "lei:CorroborationLevel",
+      "@type": "@id"
+    },
+    "FULLY_CORROBORATED": {
+      "@id": "lei:CorroborationLevelFullyCorroborated"
+    },
+    "PARTIALLY_CORROBORATED": {
+      "@id": "lei:CorroborationLevelPartiallyCorroborated"
+    },
+    "ENTITY_SUPPLIED_ONLY": {
+      "@id": "lei:CorroborationLevelEntitySuppliedOnly"
+    }
+  }
+}

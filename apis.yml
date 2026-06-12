@@ -49,6 +49,14 @@ apis:
         url: https://www.gleif.org/en/lei-data/gleif-api
       - type: PostmanDocumentation
         url: https://documenter.getpostman.com/view/7679680/SVYrrxuU
+      - type: OpenAPI
+        url: openapi/gleif-lei-api-openapi.yml
+      - type: JSONSchema
+        url: json-schema/gleif-lei-record-schema.json
+      - type: Example
+        url: examples/gleif-lei-record-example.json
+      - type: Example
+        url: examples/gleif-lei-records-list-example.json
 
 common:
   - type: Website
@@ -73,6 +81,10 @@ common:
     url: rate-limits/gleif-rate-limits.yml
   - type: FinOps
     url: finops/gleif-finops.yml
+  - type: Vocabulary
+    url: vocabulary/gleif-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/gleif-context.jsonld
 
 maintainers:
   - FN: Kin Lane

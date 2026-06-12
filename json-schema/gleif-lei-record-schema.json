@@ -1,0 +1,351 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/gleif/refs/heads/main/json-schema/gleif-lei-record-schema.json",
+  "title": "GLEIF LEI Record",
+  "description": "JSON Schema for a GLEIF Legal Entity Identifier (LEI) record as returned by the GLEIF LEI API v1.",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "const": "lei-records",
+      "description": "JSON:API resource type"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Z0-9]{18}[0-9]{2}$",
+      "description": "The 20-character Legal Entity Identifier (LEI) code",
+      "examples": ["636700STJZG4U8W2I596"]
+    },
+    "attributes": {
+      "type": "object",
+      "required": ["lei", "entity", "registration"],
+      "properties": {
+        "lei": {
+          "type": "string",
+          "pattern": "^[A-Z0-9]{18}[0-9]{2}$",
+          "description": "The 20-character LEI code",
+          "examples": ["636700STJZG4U8W2I596"]
+        },
+        "entity": {
+          "$ref": "#/$defs/Entity"
+        },
+        "registration": {
+          "$ref": "#/$defs/Registration"
+        },
+        "bic": {
+          "type": ["string", "null"],
+          "description": "Business Identifier Code (BIC/SWIFT)"
+        },
+        "mic": {
+          "type": ["string", "null"],
+          "description": "Market Identifier Code (ISO 10383)"
+        },
+        "ocid": {
+          "type": ["string", "null"],
+          "description": "Open Corporates identifier"
+        },
+        "qcc": {
+          "type": ["string", "null"]
+        },
+        "spglobal": {
+          "type": ["string", "null"],
+          "description": "S&P Global identifier"
+        },
+        "conformityFlag": {
+          "type": ["string", "null"],
+          "description": "LEI data quality conformity flag"
+        }
+      }
+    },
+    "relationships": {
+      "type": "object",
+      "properties": {
+        "managing-lou": {
+          "$ref": "#/$defs/RelatedLink"
+        },
+        "lei-issuer": {
+          "$ref": "#/$defs/RelatedLink"
+        },
+        "field-modifications": {
+          "$ref": "#/$defs/RelatedLink"
+        }
+      }
+    },
+    "links": {
+      "type": "object",
+      "properties": {
+        "self": {
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "Address": {
+      "type": "object",
+      "description": "A legal or headquarters address",
+      "properties": {
+        "language": {
+          "type": "string",
+          "description": "ISO 639-1 language code",
+          "pattern": "^[a-z]{2}$",
+          "examples": ["en", "sv", "de"]
+        },
+        "addressLines": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Street address lines"
+        },
+        "addressNumber": {
+          "type": ["string", "null"]
+        },
+        "addressNumberWithinBuilding": {
+          "type": ["string", "null"]
+        },
+        "mailRouting": {
+          "type": ["string", "null"]
+        },
+        "city": {
+          "type": "string"
+        },
+        "region": {
+          "type": ["string", "null"],
+          "description": "ISO 3166-2 region code",
+          "examples": ["SE-Y", "US-CA"]
+        },
+        "country": {
+          "type": "string",
+          "description": "ISO 3166-1 alpha-2 country code",
+          "pattern": "^[A-Z]{2}$",
+          "examples": ["SE", "US", "DE"]
+        },
+        "postalCode": {
+          "type": ["string", "null"]
+        }
+      },
+      "required": ["language", "addressLines", "city", "country"]
+    },
+    "LegalName": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name string"
+        },
+        "language": {
+          "type": "string",
+          "description": "ISO 639-1 language code"
+        }
+      },
+      "required": ["name", "language"]
+    },
+    "Entity": {
+      "type": "object",
+      "description": "Legal entity information",
+      "required": ["legalName", "legalAddress", "headquartersAddress", "status"],
+      "properties": {
+        "legalName": {
+          "$ref": "#/$defs/LegalName"
+        },
+        "otherNames": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/LegalName"
+          }
+        },
+        "transliteratedOtherNames": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/LegalName"
+          }
+        },
+        "legalAddress": {
+          "$ref": "#/$defs/Address"
+        },
+        "headquartersAddress": {
+          "$ref": "#/$defs/Address"
+        },
+        "registeredAt": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Registration authority code",
+              "examples": ["RA000544"]
+            },
+            "other": {
+              "type": ["string", "null"]
+            }
+          }
+        },
+        "registeredAs": {
+          "type": ["string", "null"],
+          "description": "The identifier assigned by the registration authority"
+        },
+        "jurisdiction": {
+          "type": "string",
+          "description": "ISO 3166-1 alpha-2 or ISO 3166-2 jurisdiction code",
+          "examples": ["SE", "US", "US-DE"]
+        },
+        "category": {
+          "type": ["string", "null"],
+          "enum": ["GENERAL", "FUND", "SUBFUND", "BRANCH", "SOLE_PROPRIETOR", null]
+        },
+        "legalForm": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "ISO 20275 ELF code"
+            },
+            "other": {
+              "type": ["string", "null"]
+            }
+          }
+        },
+        "associatedEntity": {
+          "type": "object",
+          "properties": {
+            "lei": {
+              "type": ["string", "null"]
+            },
+            "name": {
+              "type": ["string", "null"]
+            }
+          }
+        },
+        "status": {
+          "type": "string",
+          "enum": ["ACTIVE", "INACTIVE", "ANNULLED", "DUPLICATE", "LAPSED", "MERGED", "RETIRED", "DISSOLVED", "BRANCH", "FUND", "SUBFUND", "SOLE_PROPRIETOR"],
+          "description": "The current status of the legal entity"
+        },
+        "expiration": {
+          "type": "object",
+          "properties": {
+            "date": {
+              "type": ["string", "null"],
+              "format": "date-time"
+            },
+            "reason": {
+              "type": ["string", "null"],
+              "enum": ["DISSOLVED", "CORPORATE_ACTION", null]
+            }
+          }
+        },
+        "successorEntity": {
+          "type": "object",
+          "properties": {
+            "lei": {
+              "type": ["string", "null"]
+            },
+            "name": {
+              "type": ["string", "null"]
+            }
+          }
+        },
+        "successorEntities": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "creationDate": {
+          "type": ["string", "null"],
+          "format": "date-time",
+          "description": "Date when the legal entity was created"
+        },
+        "subCategory": {
+          "type": ["string", "null"]
+        },
+        "otherAddresses": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "eventGroups": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "Registration": {
+      "type": "object",
+      "description": "LEI registration information",
+      "required": ["initialRegistrationDate", "lastUpdateDate", "status", "managingLou"],
+      "properties": {
+        "initialRegistrationDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When this LEI was first registered"
+        },
+        "lastUpdateDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When this LEI record was last updated"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["ISSUED", "LAPSED", "MERGED", "RETIRED", "DUPLICATE", "ANNULLED", "CANCELLED", "TRANSFERRED", "PENDING_TRANSFER", "PENDING_ARCHIVAL"],
+          "description": "Current status of the LEI registration"
+        },
+        "nextRenewalDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Date by which the LEI must be renewed"
+        },
+        "managingLou": {
+          "type": "string",
+          "description": "LEI code of the managing LEI Issuer (LOU)",
+          "examples": ["549300O897ZC5H7CY412"]
+        },
+        "corroborationLevel": {
+          "type": ["string", "null"],
+          "enum": ["FULLY_CORROBORATED", "PARTIALLY_CORROBORATED", "PENDING", "ENTITY_SUPPLIED_ONLY", null],
+          "description": "Level of data corroboration"
+        },
+        "validatedAt": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Registration authority code used for validation"
+            },
+            "other": {
+              "type": ["string", "null"]
+            }
+          }
+        },
+        "validatedAs": {
+          "type": ["string", "null"],
+          "description": "The identifier validated by the registration authority"
+        },
+        "otherValidationAuthorities": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "RelatedLink": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "type": "object",
+          "properties": {
+            "related": {
+              "type": "string",
+              "format": "uri"
+            }
+          }
+        }
+      }
+    }
+  }
+}

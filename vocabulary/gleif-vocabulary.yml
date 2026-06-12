@@ -1,0 +1,163 @@
+vocabulary:
+  name: GLEIF LEI Vocabulary
+  description: >
+    Controlled vocabulary and terminology used by the Global Legal Entity Identifier
+    Foundation (GLEIF) LEI API and the Global LEI System (GLEIS).
+  url: https://www.gleif.org/en/about-lei/introducing-the-legal-entity-identifier-lei
+  version: "1.0.0"
+  created: "2026-06-12"
+
+terms:
+  - term: LEI
+    label: Legal Entity Identifier
+    definition: >
+      A 20-character alphanumeric code based on the ISO 17442 standard used to uniquely
+      identify legally distinct entities that engage in financial transactions. The LEI
+      structure follows the format: 4-character LOU prefix + 14 alphanumeric characters
+      + 2 check digits.
+    url: https://www.gleif.org/en/about-lei/introducing-the-legal-entity-identifier-lei
+    examples:
+      - 636700STJZG4U8W2I596
+      - 549300O897ZC5H7CY412
+
+  - term: GLEIF
+    label: Global Legal Entity Identifier Foundation
+    definition: >
+      The Global Legal Entity Identifier Foundation (GLEIF) is a not-for-profit organization
+      established to support the implementation and use of the LEI. GLEIF oversees the
+      Global LEI System (GLEIS) and maintains the Golden Copy of the global LEI database.
+    url: https://www.gleif.org/en/about/this-is-gleif
+
+  - term: GLEIS
+    label: Global LEI System
+    definition: >
+      The Global LEI System is the infrastructure for issuing and maintaining LEIs worldwide.
+      It consists of GLEIF as the central oversight body and a network of accredited
+      LEI Issuers (Local Operating Units).
+    url: https://www.gleif.org/en/about/this-is-gleif
+
+  - term: LOU
+    label: Local Operating Unit
+    definition: >
+      A Local Operating Unit (LOU) is an accredited organization authorized to issue and
+      manage LEIs. LOUs are also known as LEI Issuers. They validate entity data against
+      official registration authority records before issuing an LEI.
+    url: https://www.gleif.org/en/about-lei/how-to-get-an-lei-find-lei-issuing-organizations
+
+  - term: GoldenCopy
+    label: GLEIF Golden Copy
+    definition: >
+      The GLEIF Golden Copy is the authoritative, consolidated dataset of all LEI records
+      worldwide. It is published by GLEIF and updated three times daily. The GLEIF API
+      is based on Golden Copy data.
+    url: https://www.gleif.org/en/lei-data/gleif-golden-copy
+
+  - term: ELF
+    label: Entity Legal Form
+    definition: >
+      An Entity Legal Form (ELF) code is a standardized code defined by ISO 20275 that
+      categorizes the legal form of a registered entity (e.g., public limited company,
+      limited liability company). ELF codes are used in LEI records.
+    url: https://www.gleif.org/en/lei-data/gleif-elf-code-list
+
+  - term: RegistrationAuthority
+    label: Registration Authority
+    definition: >
+      A Registration Authority (RA) is an official body responsible for registering legal
+      entities, such as a national company registry. GLEIF maintains a global list of
+      Registration Authorities used to validate LEI data.
+    url: https://www.gleif.org/en/lei-data/gleif-registration-authorities-list
+
+  - term: BIC
+    label: Business Identifier Code
+    definition: >
+      A Business Identifier Code (BIC) is a SWIFT standard identifier for financial
+      institutions. GLEIF maps BIC codes to LEI codes where applicable.
+    url: https://www.gleif.org/en/lei-data/lei-mapping/download-bic-to-lei-relationship-files
+
+  - term: ISIN
+    label: International Securities Identification Number
+    definition: >
+      An International Securities Identification Number (ISIN) is a 12-character
+      alphanumeric code that uniquely identifies a specific security. GLEIF provides
+      mapping between ISINs and LEIs.
+    url: https://www.gleif.org/en/lei-data/lei-mapping/download-isin-to-lei-relationship-files
+
+  - term: MIC
+    label: Market Identifier Code
+    definition: >
+      A Market Identifier Code (MIC) is an ISO 10383 identifier for stock exchanges
+      and trading venues. GLEIF maps MIC codes to LEI records where applicable.
+
+  - term: vLEI
+    label: verifiable LEI
+    definition: >
+      The verifiable Legal Entity Identifier (vLEI) is a digitally verifiable version
+      of the LEI based on cryptographic key pairs. It enables automated digital
+      verification of legal entity identity and authorized representatives using
+      the KERI protocol.
+    url: https://www.gleif.org/en/lei-data/gleif-vlei-solution-overview
+
+  - term: CorroborationLevel
+    label: Corroboration Level
+    definition: >
+      Indicates the degree to which LEI reference data has been independently verified
+      against authoritative external sources.
+    values:
+      - value: FULLY_CORROBORATED
+        description: All entity data has been verified against an official registration authority
+      - value: PARTIALLY_CORROBORATED
+        description: Some but not all entity data has been verified
+      - value: ENTITY_SUPPLIED_ONLY
+        description: Data was supplied by the entity itself and has not been independently verified
+      - value: PENDING
+        description: Corroboration is in progress
+
+  - term: EntityStatus
+    label: Entity Status
+    definition: The operational status of the legal entity.
+    values:
+      - value: ACTIVE
+        description: The entity is currently operational
+      - value: INACTIVE
+        description: The entity is no longer operational
+
+  - term: RegistrationStatus
+    label: LEI Registration Status
+    definition: The current status of the LEI registration within the Global LEI System.
+    values:
+      - value: ISSUED
+        description: The LEI has been issued and is active
+      - value: LAPSED
+        description: The LEI has not been renewed and has lapsed
+      - value: MERGED
+        description: The LEI was merged with another LEI
+      - value: RETIRED
+        description: The LEI has been retired
+      - value: DUPLICATE
+        description: The LEI is identified as a duplicate
+      - value: ANNULLED
+        description: The LEI has been annulled
+      - value: CANCELLED
+        description: The LEI was cancelled before being fully issued
+      - value: TRANSFERRED
+        description: Management of the LEI was transferred to another LOU
+      - value: PENDING_TRANSFER
+        description: The LEI is in the process of being transferred
+      - value: PENDING_ARCHIVAL
+        description: The LEI is pending archival
+
+  - term: EntityCategory
+    label: Entity Category
+    definition: The category classification of the legal entity.
+    values:
+      - value: GENERAL
+        description: A general legal entity (default category)
+      - value: FUND
+        description: An investment fund
+      - value: SUBFUND
+        description: A sub-fund of an umbrella fund
+      - value: BRANCH
+        description: A branch of a foreign entity
+      - value: SOLE_PROPRIETOR
+        description: A sole proprietorship

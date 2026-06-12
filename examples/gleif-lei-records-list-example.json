@@ -1,0 +1,128 @@
+{
+  "meta": {
+    "goldenCopy": {
+      "publishDate": "2026-06-12T08:00:00Z"
+    },
+    "pagination": {
+      "currentPage": 1,
+      "perPage": 1,
+      "from": 1,
+      "to": 1,
+      "total": 3338758,
+      "lastPage": 3338758
+    }
+  },
+  "links": {
+    "first": "https://api.gleif.org/api/v1/lei-records?page%5Bnumber%5D=1&page%5Bsize%5D=1",
+    "next": "https://api.gleif.org/api/v1/lei-records?page%5Bnumber%5D=2&page%5Bsize%5D=1",
+    "last": "https://api.gleif.org/api/v1/lei-records?page%5Bnumber%5D=3338758&page%5Bsize%5D=1"
+  },
+  "data": [
+    {
+      "type": "lei-records",
+      "id": "636700STJZG4U8W2I596",
+      "attributes": {
+        "lei": "636700STJZG4U8W2I596",
+        "entity": {
+          "legalName": {
+            "name": "Kommstart 174 AB (publ)",
+            "language": "sv"
+          },
+          "otherNames": [],
+          "transliteratedOtherNames": [],
+          "legalAddress": {
+            "language": "sv",
+            "addressLines": ["Storgatan 1"],
+            "addressNumber": null,
+            "addressNumberWithinBuilding": null,
+            "mailRouting": null,
+            "city": "Sundsvall",
+            "region": "SE-Y",
+            "country": "SE",
+            "postalCode": "852 31"
+          },
+          "headquartersAddress": {
+            "language": "sv",
+            "addressLines": ["Storgatan 1"],
+            "addressNumber": null,
+            "addressNumberWithinBuilding": null,
+            "mailRouting": null,
+            "city": "Sundsvall",
+            "region": "SE-Y",
+            "country": "SE",
+            "postalCode": "852 31"
+          },
+          "registeredAt": {
+            "id": "RA000544",
+            "other": null
+          },
+          "registeredAs": "559589-0160",
+          "jurisdiction": "SE",
+          "category": "GENERAL",
+          "legalForm": {
+            "id": "XJHM",
+            "other": null
+          },
+          "associatedEntity": {
+            "lei": null,
+            "name": null
+          },
+          "status": "ACTIVE",
+          "expiration": {
+            "date": null,
+            "reason": null
+          },
+          "successorEntity": {
+            "lei": null,
+            "name": null
+          },
+          "successorEntities": [],
+          "creationDate": "2026-06-04T00:00:00Z",
+          "subCategory": null,
+          "otherAddresses": [],
+          "eventGroups": []
+        },
+        "registration": {
+          "initialRegistrationDate": "2026-06-12T06:45:00Z",
+          "lastUpdateDate": "2026-06-12T06:45:00Z",
+          "status": "ISSUED",
+          "nextRenewalDate": "2027-06-12T06:45:00Z",
+          "managingLou": "549300O897ZC5H7CY412",
+          "corroborationLevel": "FULLY_CORROBORATED",
+          "validatedAt": {
+            "id": "RA000544",
+            "other": null
+          },
+          "validatedAs": "559589-0160",
+          "otherValidationAuthorities": []
+        },
+        "bic": null,
+        "mic": null,
+        "ocid": null,
+        "qcc": null,
+        "spglobal": null,
+        "conformityFlag": null
+      },
+      "relationships": {
+        "managing-lou": {
+          "links": {
+            "related": "https://api.gleif.org/api/v1/lei-records/636700STJZG4U8W2I596/managing-lou"
+          }
+        },
+        "lei-issuer": {
+          "links": {
+            "related": "https://api.gleif.org/api/v1/lei-records/636700STJZG4U8W2I596/lei-issuer"
+          }
+        },
+        "field-modifications": {
+          "links": {
+            "related": "https://api.gleif.org/api/v1/lei-records/636700STJZG4U8W2I596/field-modifications"
+          }
+        }
+      },
+      "links": {
+        "self": "https://api.gleif.org/api/v1/lei-records/636700STJZG4U8W2I596"
+      }
+    }
+  ]
+}
