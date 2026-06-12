@@ -1,0 +1,56 @@
+name: GLEIF API FinOps
+description: >
+  GLEIF provides its LEI Data API as a free, open public service funded by GLEIF
+  as part of its nonprofit mandate to enable global legal entity identification.
+  There are no direct monetary costs for API consumption. FinOps considerations
+  for GLEIF API consumers center on operational overhead, integration maintenance,
+  and the cost of alternative data access patterns for bulk or high-volume needs.
+specificationVersion: "1.0"
+framework: FinOps Foundation FOCUS v1.0
+provider: GLEIF
+apiName: GLEIF LEI API
+costs:
+  - category: Direct API Cost
+    amount: 0
+    currency: USD
+    unit: per request
+    description: >
+      The GLEIF LEI API is entirely free with no per-request or subscription fees.
+      No billing account, API key, or payment method is required to access the API.
+  - category: Bulk Data Access
+    amount: 0
+    currency: USD
+    unit: per download
+    description: >
+      GLEIF Golden Copy and Concatenated File downloads are also free of charge.
+      Full dataset files are available in XML, JSON, and CSV formats, updated
+      three times daily, with no registration required.
+considerations:
+  - type: Integration Cost
+    description: >
+      Primary costs for GLEIF API consumers are engineering time for integration,
+      maintenance of client code against API changes documented in GLEIF-API-Changes
+      supporting documents, and monitoring of the GLEIF Service Availability Dashboard.
+  - type: Data Freshness vs. Efficiency
+    description: >
+      For bulk or batch use cases, the GLEIF Golden Copy files (updated 3x daily)
+      are more cost-efficient than repeated individual API calls, eliminating
+      infrastructure overhead of high-volume real-time requests.
+  - type: Availability Monitoring
+    description: >
+      GLEIF publishes daily service availability indicators and monthly service
+      reports. Consumers should integrate with the Service Availability Dashboard
+      for SLA awareness even though there are no cost implications for downtime.
+    url: https://www.gleif.org/en/about/gleif-services/daily-service-availability
+  - type: Data Licensing
+    description: >
+      LEI data is published under GLEIF's open data policy. Consumers should
+      verify current terms at the access and use page before redistribution.
+    url: https://www.gleif.org/en/lei-data/access-and-use-lei-data
+optimization:
+  - recommendation: Use bulk Golden Copy downloads for high-volume batch processing
+    saving: Reduces API call overhead and infrastructure costs for large datasets
+  - recommendation: Cache LEI records locally where data freshness allows
+    saving: Reduces redundant API calls for frequently queried entities
+  - recommendation: Subscribe to GLEIF technical update notifications
+    saving: Avoids unexpected integration breaks from undocumented API changes

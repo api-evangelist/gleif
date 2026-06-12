@@ -1,0 +1,32 @@
+name: GLEIF API Rate Limits
+description: >
+  GLEIF does not publicly document formal rate limits for its LEI Data API.
+  The API is provided as a free, open public service with no authentication required,
+  and GLEIF's stated mission is to make LEI data freely accessible to any interested
+  party. Users with high-volume needs are encouraged to use the GLEIF Concatenated
+  Files or Golden Copy bulk download options as an alternative to the real-time API.
+specificationVersion: "0.1"
+limits:
+  - name: API Request Rate
+    description: >
+      No formal rate limit is publicly specified by GLEIF for the LEI API.
+      The service is open and unauthenticated with no documented throttling policy.
+    type: requests
+    limit: undocumented
+    period: undocumented
+    note: >
+      For bulk data needs, GLEIF offers the Golden Copy (full dataset updated three
+      times daily) and Concatenated Files as alternatives to the real-time API.
+  - name: Bulk Data Alternative
+    description: >
+      GLEIF Golden Copy files provide the full LEI dataset in XML, JSON, and CSV
+      formats, updated three times daily. Concatenated Files offer per-LEI-issuer
+      datasets. These are recommended for high-volume or batch processing use cases
+      instead of repeated individual API calls.
+    type: download
+    url: https://www.gleif.org/en/lei-data/access-and-use-lei-data
+    formats:
+      - XML
+      - JSON
+      - CSV
+    updateFrequency: 3x daily

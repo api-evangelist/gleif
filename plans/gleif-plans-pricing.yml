@@ -1,0 +1,33 @@
+name: GLEIF API Plans and Pricing
+description: >
+  GLEIF provides its LEI Data API as a completely free, open public service with no
+  registration, API key, or subscription required. Access to the full LEI data pool
+  is available to any interested party free of charge, consistent with GLEIF's
+  mandate as a nonprofit foundation to enable global identity and protect digital trust.
+specificationVersion: "0.1"
+plans:
+  - name: Public Access
+    description: >
+      Full access to the GLEIF LEI API at no cost and with no registration required.
+      Includes all LEI record searches, entity name lookups, relationship data (Level 2),
+      BIC and ISIN mapped identifier searches, LEI issuer reference data, and code lists.
+      Data is sourced from the GLEIF Golden Copy, updated three times daily.
+    url: https://www.gleif.org/en/lei-data/access-and-use-lei-data
+    price: 0
+    currency: USD
+    billingCycle: free
+    features:
+      - Full LEI record search and retrieval
+      - Full-text and single-field entity name search
+      - Fuzzy matching for names and addresses
+      - Corporate relationship data (parent/child)
+      - BIC-to-LEI and ISIN-to-LEI mapped identifier lookups
+      - LEI issuer reference data
+      - Code lists used in LEI records
+      - No API key or registration required
+      - No rate limit publicly documented
+    quota:
+      requests: unlimited
+      note: >
+        No formal quota or rate limiting is publicly documented by GLEIF.
+        The API is intended as an open public service with unrestricted access.
