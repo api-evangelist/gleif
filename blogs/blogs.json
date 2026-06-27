@@ -2,10 +2,18 @@
   "repo": "gleif",
   "feeds": [
     {
+      "source": "https://www.gleif.org/en/newsroom/blog",
+      "feed_url": "",
+      "saved": 1,
+      "method": "agent-scrape"
+    },
+    {
       "source": "https://www.linkedin.com/company/global-legal-entity-identifier-foundation-gleif-",
-      "error": "HTTPError"
+      "saved": 0,
+      "error": "not a blog feed"
     }
   ],
-  "post_count": 0,
-  "fetched": "2026-06-14T20:42:17Z"
+  "post_count": 2,
+  "fetched": "2026-06-27T12:44:57Z",
+  "agent_pulled": "2026-06-27"
 }

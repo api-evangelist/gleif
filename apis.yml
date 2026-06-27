@@ -53,9 +53,9 @@ apis:
         url: openapi/gleif-lei-api-openapi.yml
       - type: JSONSchema
         url: json-schema/gleif-lei-record-schema.json
-      - type: Example
+      - type: Examples
         url: examples/gleif-lei-record-example.json
-      - type: Example
+      - type: Examples
         url: examples/gleif-lei-records-list-example.json
 
 common:
