@@ -59,6 +59,8 @@ apis:
         url: examples/gleif-lei-records-list-example.json
 
 common:
+  - type: DomainSecurity
+    url: security/gleif-domain-security.yml
   - type: Website
     url: https://www.gleif.org
   - type: Documentation
