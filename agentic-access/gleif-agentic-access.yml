@@ -1,0 +1,174 @@
+generated: '2026-07-15'
+method: generated
+source: openapi/gleif-lei-api-openapi.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 16
+  by_action_class:
+    connected: 16
+  by_consequence:
+    read: 16
+  human_in_the_loop_required: 0
+operations:
+- path: /lei-records
+  method: get
+  operationId: listLeiRecords
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /lei-records/{lei}
+  method: get
+  operationId: getLeiRecord
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /lei-records/{lei}/direct-children
+  method: get
+  operationId: getLeiRecordDirectChildren
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /lei-records/{lei}/ultimate-children
+  method: get
+  operationId: getLeiRecordUltimateChildren
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /lei-records/{lei}/managing-lou
+  method: get
+  operationId: getLeiRecordManagingLou
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /lei-records/{lei}/lei-issuer
+  method: get
+  operationId: getLeiRecordLeiIssuer
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /lei-records/{lei}/field-modifications
+  method: get
+  operationId: getLeiRecordFieldModifications
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /lei-issuers
+  method: get
+  operationId: listLeiIssuers
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /lei-issuers/{id}
+  method: get
+  operationId: getLeiIssuer
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /lei-issuers/{id}/jurisdictions
+  method: get
+  operationId: getLeiIssuerJurisdictions
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /lei-issuers/{id}/fundJurisdictions
+  method: get
+  operationId: getLeiIssuerFundJurisdictions
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /fuzzycompletions
+  method: get
+  operationId: getFuzzyCompletions
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /entity-legal-forms
+  method: get
+  operationId: listEntityLegalForms
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /entity-legal-forms/{id}
+  method: get
+  operationId: getEntityLegalForm
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /registration-authorities
+  method: get
+  operationId: listRegistrationAuthorities
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /registration-authorities/{id}
+  method: get
+  operationId: getRegistrationAuthority
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
