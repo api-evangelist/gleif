@@ -1,0 +1,787 @@
+openapi: 3.0.3
+info:
+  title: GLEIF LEI Corporate Relationships LEI Records API
+  description: 'The GLEIF LEI API provides programmatic access to the Global Legal Entity Identifier (LEI) System''s full data pool. It enables searches by entity name, LEI code, BIC code, ISIN code, and corporate relationship structures. The API is free, open, and requires no authentication or API key. It is built on the GLEIF Golden Copy dataset which is updated three times daily.
+
+    '
+  version: 1.0.0
+  contact:
+    name: GLEIF
+    url: https://www.gleif.org
+  license:
+    name: Creative Commons Zero (CC0)
+    url: https://creativecommons.org/publicdomain/zero/1.0/
+servers:
+- url: https://api.gleif.org/api/v1
+  description: GLEIF Production API
+tags:
+- name: LEI Records
+  description: Operations on Legal Entity Identifier records
+paths:
+  /lei-records:
+    get:
+      summary: List or search LEI records
+      description: 'Returns a paginated list of LEI records. Supports full-text search, field-specific filters, and fuzzy matching. The Golden Copy dataset is updated three times daily.
+
+        '
+      operationId: listLeiRecords
+      tags:
+      - LEI Records
+      parameters:
+      - name: page[number]
+        in: query
+        description: Page number for pagination (1-indexed)
+        schema:
+          type: integer
+          default: 1
+          minimum: 1
+      - name: page[size]
+        in: query
+        description: Number of results per page
+        schema:
+          type: integer
+          default: 10
+          minimum: 1
+          maximum: 200
+      - name: filter[fulltext]
+        in: query
+        description: Full-text search across all fields
+        schema:
+          type: string
+      - name: filter[entity.legalName]
+        in: query
+        description: Filter by legal name of the entity
+        schema:
+          type: string
+      - name: filter[entity.status]
+        in: query
+        description: Filter by entity status
+        schema:
+          type: string
+          enum:
+          - ACTIVE
+          - INACTIVE
+          - ANNULLED
+          - DUPLICATE
+          - LAPSED
+          - MERGED
+          - RETIRED
+          - DISSOLVED
+          - BRANCH
+          - FUND
+          - SUBFUND
+          - SOLE_PROPRIETOR
+      - name: filter[registration.status]
+        in: query
+        description: Filter by LEI registration status
+        schema:
+          type: string
+          enum:
+          - ISSUED
+          - LAPSED
+          - MERGED
+          - RETIRED
+          - DUPLICATE
+          - ANNULLED
+          - CANCELLED
+          - TRANSFERRED
+          - PENDING_TRANSFER
+          - PENDING_ARCHIVAL
+      - name: filter[entity.jurisdiction]
+        in: query
+        description: Filter by jurisdiction (ISO 3166-1 alpha-2 or ISO 3166-2 region code)
+        schema:
+          type: string
+      - name: filter[entity.legalForm.id]
+        in: query
+        description: Filter by legal form ELF code
+        schema:
+          type: string
+      - name: filter[registration.managingLou]
+        in: query
+        description: Filter by managing LEI Issuer (LOU) LEI code
+        schema:
+          type: string
+      - name: sort
+        in: query
+        description: Field to sort by (prefix with - for descending order)
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response with paginated LEI records
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/LeiRecordListResponse'
+        '400':
+          description: Bad request - invalid filter or parameter
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /lei-records/{lei}:
+    get:
+      summary: Get a single LEI record
+      description: Returns a single LEI record by its 20-character LEI code.
+      operationId: getLeiRecord
+      tags:
+      - LEI Records
+      parameters:
+      - name: lei
+        in: path
+        required: true
+        description: The 20-character Legal Entity Identifier code
+        schema:
+          type: string
+          pattern: ^[A-Z0-9]{18}[0-9]{2}$
+          example: 636700STJZG4U8W2I596
+      responses:
+        '200':
+          description: Successful response with a single LEI record
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/LeiRecordSingleResponse'
+        '404':
+          description: LEI record not found
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /lei-records/{lei}/direct-children:
+    get:
+      summary: Get direct children of a legal entity
+      description: Returns LEI records of entities that are directly owned/controlled by the specified entity.
+      operationId: getLeiRecordDirectChildren
+      tags:
+      - LEI Records
+      parameters:
+      - name: lei
+        in: path
+        required: true
+        description: The 20-character Legal Entity Identifier code
+        schema:
+          type: string
+          pattern: ^[A-Z0-9]{18}[0-9]{2}$
+      - name: page[number]
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: page[size]
+        in: query
+        schema:
+          type: integer
+          default: 10
+          maximum: 200
+      responses:
+        '200':
+          description: Paginated list of child LEI records
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/LeiRecordListResponse'
+        '404':
+          description: LEI record not found
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /lei-records/{lei}/ultimate-children:
+    get:
+      summary: Get ultimate children of a legal entity
+      description: Returns all ultimate children (full subsidiary tree) of the specified entity.
+      operationId: getLeiRecordUltimateChildren
+      tags:
+      - LEI Records
+      parameters:
+      - name: lei
+        in: path
+        required: true
+        description: The 20-character Legal Entity Identifier code
+        schema:
+          type: string
+          pattern: ^[A-Z0-9]{18}[0-9]{2}$
+      - name: page[number]
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: page[size]
+        in: query
+        schema:
+          type: integer
+          default: 10
+          maximum: 200
+      responses:
+        '200':
+          description: Paginated list of ultimate child LEI records
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/LeiRecordListResponse'
+        '404':
+          description: LEI record not found
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /lei-records/{lei}/managing-lou:
+    get:
+      summary: Get the managing LEI Issuer for a record
+      description: Returns the LEI Issuer (LOU) responsible for managing this LEI record.
+      operationId: getLeiRecordManagingLou
+      tags:
+      - LEI Records
+      parameters:
+      - name: lei
+        in: path
+        required: true
+        description: The 20-character Legal Entity Identifier code
+        schema:
+          type: string
+          pattern: ^[A-Z0-9]{18}[0-9]{2}$
+      responses:
+        '200':
+          description: The managing LEI Issuer record
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/LeiIssuerSingleResponse'
+        '404':
+          description: LEI record not found
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /lei-records/{lei}/lei-issuer:
+    get:
+      summary: Get the LEI Issuer for a record
+      description: Returns the LEI Issuer (LOU) that issued this LEI record.
+      operationId: getLeiRecordLeiIssuer
+      tags:
+      - LEI Records
+      parameters:
+      - name: lei
+        in: path
+        required: true
+        description: The 20-character Legal Entity Identifier code
+        schema:
+          type: string
+          pattern: ^[A-Z0-9]{18}[0-9]{2}$
+      responses:
+        '200':
+          description: The LEI Issuer record
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/LeiIssuerSingleResponse'
+        '404':
+          description: LEI record not found
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /lei-records/{lei}/field-modifications:
+    get:
+      summary: Get field modification history for a LEI record
+      description: Returns the history of field-level modifications for the specified LEI record.
+      operationId: getLeiRecordFieldModifications
+      tags:
+      - LEI Records
+      parameters:
+      - name: lei
+        in: path
+        required: true
+        description: The 20-character Legal Entity Identifier code
+        schema:
+          type: string
+          pattern: ^[A-Z0-9]{18}[0-9]{2}$
+      - name: page[number]
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: page[size]
+        in: query
+        schema:
+          type: integer
+          default: 10
+          maximum: 200
+      responses:
+        '200':
+          description: List of field modifications
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+                  data:
+                    type: array
+                    items:
+                      type: object
+        '404':
+          description: LEI record not found
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    LegalName:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The legal name of the entity
+          example: Kommstart 174 AB (publ)
+        language:
+          type: string
+          description: ISO 639-1 language code
+          example: sv
+    Registration:
+      type: object
+      properties:
+        initialRegistrationDate:
+          type: string
+          format: date-time
+        lastUpdateDate:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+          - ISSUED
+          - LAPSED
+          - MERGED
+          - RETIRED
+          - DUPLICATE
+          - ANNULLED
+          - CANCELLED
+          - TRANSFERRED
+          - PENDING_TRANSFER
+          - PENDING_ARCHIVAL
+        nextRenewalDate:
+          type: string
+          format: date-time
+        managingLou:
+          type: string
+          description: LEI of the managing LEI Issuer
+          example: 549300O897ZC5H7CY412
+        corroborationLevel:
+          type: string
+          enum:
+          - FULLY_CORROBORATED
+          - PARTIALLY_CORROBORATED
+          - PENDING
+          - ENTITY_SUPPLIED_ONLY
+          - null
+        validatedAt:
+          type: object
+          properties:
+            id:
+              type: string
+            other:
+              type: string
+              nullable: true
+        validatedAs:
+          type: string
+          nullable: true
+        otherValidationAuthorities:
+          type: array
+          items:
+            type: object
+    LeiRecordListResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/PaginationMeta'
+        links:
+          $ref: '#/components/schemas/PaginationLinks'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/LeiRecord'
+    LeiRecordRelationships:
+      type: object
+      properties:
+        managing-lou:
+          type: object
+          properties:
+            links:
+              type: object
+              properties:
+                related:
+                  type: string
+                  format: uri
+        lei-issuer:
+          type: object
+          properties:
+            links:
+              type: object
+              properties:
+                related:
+                  type: string
+                  format: uri
+        field-modifications:
+          type: object
+          properties:
+            links:
+              type: object
+              properties:
+                related:
+                  type: string
+                  format: uri
+    LeiRecordSingleResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/GoldenCopyMeta'
+        data:
+          $ref: '#/components/schemas/LeiRecord'
+    LeiIssuerSingleResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/GoldenCopyMeta'
+        data:
+          $ref: '#/components/schemas/LeiIssuer'
+    LeiIssuer:
+      type: object
+      properties:
+        type:
+          type: string
+          example: lei-issuers
+        id:
+          type: string
+          description: LEI code of the issuer
+          example: 029200067A7K6CH0H586
+        attributes:
+          type: object
+          properties:
+            lei:
+              type: string
+              example: 029200067A7K6CH0H586
+            name:
+              type: string
+              example: Central Securities Clearing System PLC
+            marketingName:
+              type: string
+              nullable: true
+            website:
+              type: string
+              format: uri
+              nullable: true
+            accreditationDate:
+              type: string
+              format: date-time
+        relationships:
+          type: object
+          properties:
+            jurisdictions:
+              type: object
+              properties:
+                links:
+                  type: object
+                  properties:
+                    related:
+                      type: string
+                      format: uri
+            fundJurisdictions:
+              type: object
+              properties:
+                links:
+                  type: object
+                  properties:
+                    related:
+                      type: string
+                      format: uri
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+              format: uri
+    PaginationMeta:
+      type: object
+      properties:
+        goldenCopy:
+          type: object
+          properties:
+            publishDate:
+              type: string
+              format: date-time
+        pagination:
+          $ref: '#/components/schemas/PaginationInfo'
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: string
+                description: HTTP status code as string
+              title:
+                type: string
+                description: Short error title
+              detail:
+                type: string
+                description: Detailed error description
+    PaginationLinks:
+      type: object
+      properties:
+        first:
+          type: string
+          format: uri
+        next:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+    GoldenCopyMeta:
+      type: object
+      properties:
+        goldenCopy:
+          type: object
+          properties:
+            publishDate:
+              type: string
+              format: date-time
+              description: Timestamp of the last Golden Copy publication
+              example: '2026-06-12T08:00:00Z'
+    Entity:
+      type: object
+      properties:
+        legalName:
+          $ref: '#/components/schemas/LegalName'
+        otherNames:
+          type: array
+          items:
+            $ref: '#/components/schemas/LegalName'
+        transliteratedOtherNames:
+          type: array
+          items:
+            $ref: '#/components/schemas/LegalName'
+        legalAddress:
+          $ref: '#/components/schemas/Address'
+        headquartersAddress:
+          $ref: '#/components/schemas/Address'
+        registeredAt:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Registration authority code
+              example: RA000544
+            other:
+              type: string
+              nullable: true
+        registeredAs:
+          type: string
+          nullable: true
+          description: The identifier assigned by the registration authority
+        jurisdiction:
+          type: string
+          description: ISO 3166-1 alpha-2 or ISO 3166-2 code
+          example: SE
+        category:
+          type: string
+          nullable: true
+          enum:
+          - GENERAL
+          - FUND
+          - SUBFUND
+          - BRANCH
+          - SOLE_PROPRIETOR
+          - null
+        legalForm:
+          type: object
+          properties:
+            id:
+              type: string
+              description: ELF code
+            other:
+              type: string
+              nullable: true
+        associatedEntity:
+          type: object
+          properties:
+            lei:
+              type: string
+              nullable: true
+            name:
+              type: string
+              nullable: true
+        status:
+          type: string
+          enum:
+          - ACTIVE
+          - INACTIVE
+          - ANNULLED
+          - DUPLICATE
+          - LAPSED
+          - MERGED
+          - RETIRED
+          - DISSOLVED
+          - BRANCH
+          - FUND
+          - SUBFUND
+          - SOLE_PROPRIETOR
+        expiration:
+          type: object
+          properties:
+            date:
+              type: string
+              format: date-time
+              nullable: true
+            reason:
+              type: string
+              nullable: true
+              enum:
+              - DISSOLVED
+              - CORPORATE_ACTION
+              - null
+        successorEntity:
+          type: object
+          properties:
+            lei:
+              type: string
+              nullable: true
+            name:
+              type: string
+              nullable: true
+        successorEntities:
+          type: array
+          items:
+            type: object
+        creationDate:
+          type: string
+          format: date-time
+          nullable: true
+        subCategory:
+          type: string
+          nullable: true
+        otherAddresses:
+          type: array
+          items:
+            type: object
+        eventGroups:
+          type: array
+          items:
+            type: object
+    PaginationInfo:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+          example: 1
+        perPage:
+          type: integer
+          example: 10
+        from:
+          type: integer
+          example: 1
+        to:
+          type: integer
+          example: 10
+        total:
+          type: integer
+          example: 3338758
+        lastPage:
+          type: integer
+          example: 333876
+    LeiRecordAttributes:
+      type: object
+      properties:
+        lei:
+          type: string
+          description: The 20-character LEI code
+          pattern: ^[A-Z0-9]{18}[0-9]{2}$
+          example: 636700STJZG4U8W2I596
+        entity:
+          $ref: '#/components/schemas/Entity'
+        registration:
+          $ref: '#/components/schemas/Registration'
+        bic:
+          type: string
+          nullable: true
+          description: Business Identifier Code (BIC/SWIFT)
+        mic:
+          type: string
+          nullable: true
+          description: Market Identifier Code (MIC)
+        ocid:
+          type: string
+          nullable: true
+          description: Open Corporates ID
+        qcc:
+          type: string
+          nullable: true
+        spglobal:
+          type: string
+          nullable: true
+          description: S&P Global identifier
+        conformityFlag:
+          type: string
+          nullable: true
+    LeiRecord:
+      type: object
+      properties:
+        type:
+          type: string
+          example: lei-records
+        id:
+          type: string
+          description: The 20-character LEI code
+          example: 636700STJZG4U8W2I596
+        attributes:
+          $ref: '#/components/schemas/LeiRecordAttributes'
+        relationships:
+          $ref: '#/components/schemas/LeiRecordRelationships'
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+              format: uri
+    Address:
+      type: object
+      properties:
+        language:
+          type: string
+          description: ISO 639-1 language code
+          example: en
+        addressLines:
+          type: array
+          items:
+            type: string
+        addressNumber:
+          type: string
+          nullable: true
+        addressNumberWithinBuilding:
+          type: string
+          nullable: true
+        mailRouting:
+          type: string
+          nullable: true
+        city:
+          type: string
+        region:
+          type: string
+          nullable: true
+          description: ISO 3166-2 region code
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code
+        postalCode:
+          type: string
+          nullable: true

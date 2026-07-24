@@ -1,0 +1,324 @@
+openapi: 3.0.3
+info:
+  title: GLEIF LEI Corporate Relationships LEI Issuers API
+  description: 'The GLEIF LEI API provides programmatic access to the Global Legal Entity Identifier (LEI) System''s full data pool. It enables searches by entity name, LEI code, BIC code, ISIN code, and corporate relationship structures. The API is free, open, and requires no authentication or API key. It is built on the GLEIF Golden Copy dataset which is updated three times daily.
+
+    '
+  version: 1.0.0
+  contact:
+    name: GLEIF
+    url: https://www.gleif.org
+  license:
+    name: Creative Commons Zero (CC0)
+    url: https://creativecommons.org/publicdomain/zero/1.0/
+servers:
+- url: https://api.gleif.org/api/v1
+  description: GLEIF Production API
+tags:
+- name: LEI Issuers
+  description: Operations on accredited LEI Issuers (Local Operating Units)
+paths:
+  /lei-records/{lei}/managing-lou:
+    get:
+      summary: Get the managing LEI Issuer for a record
+      description: Returns the LEI Issuer (LOU) responsible for managing this LEI record.
+      operationId: getLeiRecordManagingLou
+      tags:
+      - LEI Issuers
+      parameters:
+      - name: lei
+        in: path
+        required: true
+        description: The 20-character Legal Entity Identifier code
+        schema:
+          type: string
+          pattern: ^[A-Z0-9]{18}[0-9]{2}$
+      responses:
+        '200':
+          description: The managing LEI Issuer record
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/LeiIssuerSingleResponse'
+        '404':
+          description: LEI record not found
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /lei-records/{lei}/lei-issuer:
+    get:
+      summary: Get the LEI Issuer for a record
+      description: Returns the LEI Issuer (LOU) that issued this LEI record.
+      operationId: getLeiRecordLeiIssuer
+      tags:
+      - LEI Issuers
+      parameters:
+      - name: lei
+        in: path
+        required: true
+        description: The 20-character Legal Entity Identifier code
+        schema:
+          type: string
+          pattern: ^[A-Z0-9]{18}[0-9]{2}$
+      responses:
+        '200':
+          description: The LEI Issuer record
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/LeiIssuerSingleResponse'
+        '404':
+          description: LEI record not found
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /lei-issuers:
+    get:
+      summary: List LEI Issuers (LOUs)
+      description: Returns a paginated list of accredited LEI Issuers (Local Operating Units).
+      operationId: listLeiIssuers
+      tags:
+      - LEI Issuers
+      parameters:
+      - name: page[number]
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: page[size]
+        in: query
+        schema:
+          type: integer
+          default: 10
+          maximum: 200
+      responses:
+        '200':
+          description: Paginated list of LEI Issuers
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/LeiIssuerListResponse'
+        '400':
+          description: Bad request
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /lei-issuers/{id}:
+    get:
+      summary: Get a single LEI Issuer
+      description: Returns a single LEI Issuer by its LEI code.
+      operationId: getLeiIssuer
+      tags:
+      - LEI Issuers
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The LEI code of the issuer
+        schema:
+          type: string
+          example: 029200067A7K6CH0H586
+      responses:
+        '200':
+          description: Successful response with a single LEI Issuer
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/LeiIssuerSingleResponse'
+        '404':
+          description: LEI Issuer not found
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /lei-issuers/{id}/jurisdictions:
+    get:
+      summary: Get jurisdictions for a LEI Issuer
+      description: Returns the jurisdictions in which this LEI Issuer is accredited to issue LEIs.
+      operationId: getLeiIssuerJurisdictions
+      tags:
+      - LEI Issuers
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of jurisdictions
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+  /lei-issuers/{id}/fundJurisdictions:
+    get:
+      summary: Get fund jurisdictions for a LEI Issuer
+      description: Returns the fund jurisdictions associated with this LEI Issuer.
+      operationId: getLeiIssuerFundJurisdictions
+      tags:
+      - LEI Issuers
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of fund jurisdictions
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+components:
+  schemas:
+    LeiIssuerListResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/PaginationMeta'
+        links:
+          $ref: '#/components/schemas/PaginationLinks'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/LeiIssuer'
+    LeiIssuerSingleResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/GoldenCopyMeta'
+        data:
+          $ref: '#/components/schemas/LeiIssuer'
+    LeiIssuer:
+      type: object
+      properties:
+        type:
+          type: string
+          example: lei-issuers
+        id:
+          type: string
+          description: LEI code of the issuer
+          example: 029200067A7K6CH0H586
+        attributes:
+          type: object
+          properties:
+            lei:
+              type: string
+              example: 029200067A7K6CH0H586
+            name:
+              type: string
+              example: Central Securities Clearing System PLC
+            marketingName:
+              type: string
+              nullable: true
+            website:
+              type: string
+              format: uri
+              nullable: true
+            accreditationDate:
+              type: string
+              format: date-time
+        relationships:
+          type: object
+          properties:
+            jurisdictions:
+              type: object
+              properties:
+                links:
+                  type: object
+                  properties:
+                    related:
+                      type: string
+                      format: uri
+            fundJurisdictions:
+              type: object
+              properties:
+                links:
+                  type: object
+                  properties:
+                    related:
+                      type: string
+                      format: uri
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+              format: uri
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: string
+                description: HTTP status code as string
+              title:
+                type: string
+                description: Short error title
+              detail:
+                type: string
+                description: Detailed error description
+    GoldenCopyMeta:
+      type: object
+      properties:
+        goldenCopy:
+          type: object
+          properties:
+            publishDate:
+              type: string
+              format: date-time
+              description: Timestamp of the last Golden Copy publication
+              example: '2026-06-12T08:00:00Z'
+    PaginationLinks:
+      type: object
+      properties:
+        first:
+          type: string
+          format: uri
+        next:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+    PaginationMeta:
+      type: object
+      properties:
+        goldenCopy:
+          type: object
+          properties:
+            publishDate:
+              type: string
+              format: date-time
+        pagination:
+          $ref: '#/components/schemas/PaginationInfo'
+    PaginationInfo:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+          example: 1
+        perPage:
+          type: integer
+          example: 10
+        from:
+          type: integer
+          example: 1
+        to:
+          type: integer
+          example: 10
+        total:
+          type: integer
+          example: 3338758
+        lastPage:
+          type: integer
+          example: 333876

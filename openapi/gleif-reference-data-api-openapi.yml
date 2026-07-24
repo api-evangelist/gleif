@@ -1,0 +1,291 @@
+openapi: 3.0.3
+info:
+  title: GLEIF LEI Corporate Relationships Reference Data API
+  description: 'The GLEIF LEI API provides programmatic access to the Global Legal Entity Identifier (LEI) System''s full data pool. It enables searches by entity name, LEI code, BIC code, ISIN code, and corporate relationship structures. The API is free, open, and requires no authentication or API key. It is built on the GLEIF Golden Copy dataset which is updated three times daily.
+
+    '
+  version: 1.0.0
+  contact:
+    name: GLEIF
+    url: https://www.gleif.org
+  license:
+    name: Creative Commons Zero (CC0)
+    url: https://creativecommons.org/publicdomain/zero/1.0/
+servers:
+- url: https://api.gleif.org/api/v1
+  description: GLEIF Production API
+tags:
+- name: Reference Data
+  description: Reference data including entity legal forms and registration authorities
+paths:
+  /entity-legal-forms:
+    get:
+      summary: List entity legal forms
+      description: Returns a paginated list of Entity Legal Form (ELF) codes as defined by ISO 20275.
+      operationId: listEntityLegalForms
+      tags:
+      - Reference Data
+      parameters:
+      - name: page[number]
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: page[size]
+        in: query
+        schema:
+          type: integer
+          default: 10
+          maximum: 200
+      - name: filter[countryCode]
+        in: query
+        description: Filter by ISO 3166-1 alpha-2 country code
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Paginated list of entity legal forms
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/EntityLegalFormListResponse'
+  /entity-legal-forms/{id}:
+    get:
+      summary: Get a single entity legal form
+      description: Returns a single Entity Legal Form by its ELF code.
+      operationId: getEntityLegalForm
+      tags:
+      - Reference Data
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ELF (Entity Legal Form) code
+        schema:
+          type: string
+          example: 09K3
+      responses:
+        '200':
+          description: Single entity legal form record
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+        '404':
+          description: Entity legal form not found
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /registration-authorities:
+    get:
+      summary: List registration authorities
+      description: Returns a paginated list of registration authorities used to validate LEI data.
+      operationId: listRegistrationAuthorities
+      tags:
+      - Reference Data
+      parameters:
+      - name: page[number]
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: page[size]
+        in: query
+        schema:
+          type: integer
+          default: 10
+          maximum: 200
+      responses:
+        '200':
+          description: Paginated list of registration authorities
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/RegistrationAuthorityListResponse'
+  /registration-authorities/{id}:
+    get:
+      summary: Get a single registration authority
+      description: Returns a single registration authority by its RA code.
+      operationId: getRegistrationAuthority
+      tags:
+      - Reference Data
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The registration authority code (e.g. RA000001)
+        schema:
+          type: string
+          example: RA000001
+      responses:
+        '200':
+          description: Single registration authority record
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+        '404':
+          description: Registration authority not found
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    RegistrationAuthority:
+      type: object
+      properties:
+        type:
+          type: string
+          example: registration-authorities
+        id:
+          type: string
+          example: RA000001
+        attributes:
+          type: object
+          properties:
+            code:
+              type: string
+              example: RA000001
+            internationalName:
+              type: string
+            localName:
+              type: string
+              nullable: true
+            internationalOrganizationName:
+              type: string
+            localOrganizationName:
+              type: string
+              nullable: true
+            website:
+              type: string
+              format: uri
+              nullable: true
+            jurisdictions:
+              type: array
+              items:
+                type: object
+    EntityLegalFormListResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/PaginationMeta'
+        links:
+          $ref: '#/components/schemas/PaginationLinks'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityLegalForm'
+    RegistrationAuthorityListResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/PaginationMeta'
+        links:
+          $ref: '#/components/schemas/PaginationLinks'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/RegistrationAuthority'
+    PaginationMeta:
+      type: object
+      properties:
+        goldenCopy:
+          type: object
+          properties:
+            publishDate:
+              type: string
+              format: date-time
+        pagination:
+          $ref: '#/components/schemas/PaginationInfo'
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: string
+                description: HTTP status code as string
+              title:
+                type: string
+                description: Short error title
+              detail:
+                type: string
+                description: Detailed error description
+    PaginationLinks:
+      type: object
+      properties:
+        first:
+          type: string
+          format: uri
+        next:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+    EntityLegalForm:
+      type: object
+      properties:
+        type:
+          type: string
+          example: entity-legal-forms
+        id:
+          type: string
+          description: ELF code
+          example: 09K3
+        attributes:
+          type: object
+          properties:
+            code:
+              type: string
+              example: 09K3
+            country:
+              type: string
+              example: Faroe Islands
+            jurisdiction:
+              type: string
+              nullable: true
+            countryCode:
+              type: string
+              example: FO
+            subdivisionCode:
+              type: string
+              nullable: true
+            dateCreated:
+              type: string
+              format: date
+            status:
+              type: string
+              enum:
+              - ACTV
+              - INAC
+            names:
+              type: array
+              items:
+                type: object
+    PaginationInfo:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+          example: 1
+        perPage:
+          type: integer
+          example: 10
+        from:
+          type: integer
+          example: 1
+        to:
+          type: integer
+          example: 10
+        total:
+          type: integer
+          example: 3338758
+        lastPage:
+          type: integer
+          example: 333876

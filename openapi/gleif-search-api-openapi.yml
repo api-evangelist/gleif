@@ -1,0 +1,96 @@
+openapi: 3.0.3
+info:
+  title: GLEIF LEI Corporate Relationships Search API
+  description: 'The GLEIF LEI API provides programmatic access to the Global Legal Entity Identifier (LEI) System''s full data pool. It enables searches by entity name, LEI code, BIC code, ISIN code, and corporate relationship structures. The API is free, open, and requires no authentication or API key. It is built on the GLEIF Golden Copy dataset which is updated three times daily.
+
+    '
+  version: 1.0.0
+  contact:
+    name: GLEIF
+    url: https://www.gleif.org
+  license:
+    name: Creative Commons Zero (CC0)
+    url: https://creativecommons.org/publicdomain/zero/1.0/
+servers:
+- url: https://api.gleif.org/api/v1
+  description: GLEIF Production API
+tags:
+- name: Search
+  description: Search and autocomplete operations
+paths:
+  /fuzzycompletions:
+    get:
+      summary: Fuzzy autocomplete suggestions
+      description: 'Returns fuzzy-matched autocomplete suggestions for entity names and addresses. Useful for building typeahead search UI components.
+
+        '
+      operationId: getFuzzyCompletions
+      tags:
+      - Search
+      parameters:
+      - name: field
+        in: query
+        required: true
+        description: The field to search against
+        schema:
+          type: string
+          enum:
+          - fulltext
+          - entity.legalName
+          - entity.legalAddress.addressLines
+          - entity.headquartersAddress.addressLines
+      - name: q
+        in: query
+        required: true
+        description: The search query string
+        schema:
+          type: string
+          minLength: 1
+      responses:
+        '200':
+          description: List of fuzzy completion suggestions
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                          example: fuzzycompletions
+                        attributes:
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                        relationships:
+                          type: object
+        '400':
+          description: Missing or invalid required parameters
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: string
+                description: HTTP status code as string
+              title:
+                type: string
+                description: Short error title
+              detail:
+                type: string
+                description: Detailed error description
