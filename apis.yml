@@ -11,7 +11,19 @@ description: >
   to any interested party for searching, validating, and retrieving legal entity
   identifiers and associated organizational reference data.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: free
+  onboarding: open
+  trial: false
+  try_now: true
+  public: true
+  label: Free · Open access
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/gleif.png
 url: https://raw.githubusercontent.com/api-evangelist/gleif/refs/heads/main/apis.yml
 created: "2026-06-12"
 modified: "2026-06-12"
@@ -27,37 +39,106 @@ tags:
   - Open Data
 
 apis:
-  - aid: https://raw.githubusercontent.com/api-evangelist/gleif/refs/heads/main/apis.yml#gleif-lei-api
-    name: GLEIF LEI API
-    description: >
-      The GLEIF LEI API provides programmatic access to the Global LEI System's
-      full data pool, enabling searches by entity name, LEI code, BIC code, ISIN
-      code, and corporate relationship structures. The API is free, open, and
-      requires no authentication or API key, built on the GLEIF Golden Copy dataset
-      which is updated three times daily.
-    humanURL: https://www.gleif.org/en/lei-data/gleif-api
-    baseURL: https://api.gleif.org/api/v1
-    tags:
-      - Legal Entity Identifier
-      - LEI Search
-      - Entity Data
-      - Corporate Relationships
-      - BIC
-      - ISIN
-    properties:
-      - type: Documentation
-        url: https://www.gleif.org/en/lei-data/gleif-api
-      - type: PostmanDocumentation
-        url: https://documenter.getpostman.com/view/7679680/SVYrrxuU
-      - type: OpenAPI
-        url: openapi/gleif-lei-api-openapi.yml
-      - type: JSONSchema
-        url: json-schema/gleif-lei-record-schema.json
-      - type: Examples
-        url: examples/gleif-lei-record-example.json
-      - type: Examples
-        url: examples/gleif-lei-records-list-example.json
-
+- aid: gleif:gleif-corporate-relationships-api
+  name: GLEIF Corporate Relationships API
+  description: Corporate ownership and relationship hierarchy data
+  humanURL: https://www.gleif.org/en/lei-data/gleif-api
+  baseURL: https://api.gleif.org/api/v1
+  tags:
+  - Corporate Relationships
+  properties:
+  - type: OpenAPI
+    url: openapi/gleif-corporate-relationships-api-openapi.yml
+  - type: Documentation
+    url: https://www.gleif.org/en/lei-data/gleif-api
+  - type: PostmanDocumentation
+    url: https://documenter.getpostman.com/view/7679680/SVYrrxuU
+  - type: JSONSchema
+    url: json-schema/gleif-lei-record-schema.json
+  - type: Examples
+    url: examples/gleif-lei-record-example.json
+  - type: Examples
+    url: examples/gleif-lei-records-list-example.json
+- aid: gleif:gleif-lei-issuers-api
+  name: GLEIF LEI Issuers API
+  description: Operations on accredited LEI Issuers (Local Operating Units)
+  humanURL: https://www.gleif.org/en/lei-data/gleif-api
+  baseURL: https://api.gleif.org/api/v1
+  tags:
+  - LEI Issuers
+  properties:
+  - type: OpenAPI
+    url: openapi/gleif-lei-issuers-api-openapi.yml
+  - type: Documentation
+    url: https://www.gleif.org/en/lei-data/gleif-api
+  - type: PostmanDocumentation
+    url: https://documenter.getpostman.com/view/7679680/SVYrrxuU
+  - type: JSONSchema
+    url: json-schema/gleif-lei-record-schema.json
+  - type: Examples
+    url: examples/gleif-lei-record-example.json
+  - type: Examples
+    url: examples/gleif-lei-records-list-example.json
+- aid: gleif:gleif-lei-records-api
+  name: GLEIF LEI Records API
+  description: Operations on Legal Entity Identifier records
+  humanURL: https://www.gleif.org/en/lei-data/gleif-api
+  baseURL: https://api.gleif.org/api/v1
+  tags:
+  - LEI Records
+  properties:
+  - type: OpenAPI
+    url: openapi/gleif-lei-records-api-openapi.yml
+  - type: Documentation
+    url: https://www.gleif.org/en/lei-data/gleif-api
+  - type: PostmanDocumentation
+    url: https://documenter.getpostman.com/view/7679680/SVYrrxuU
+  - type: JSONSchema
+    url: json-schema/gleif-lei-record-schema.json
+  - type: Examples
+    url: examples/gleif-lei-record-example.json
+  - type: Examples
+    url: examples/gleif-lei-records-list-example.json
+- aid: gleif:gleif-reference-data-api
+  name: GLEIF Reference Data API
+  description: Reference data including entity legal forms and registration authorities
+  humanURL: https://www.gleif.org/en/lei-data/gleif-api
+  baseURL: https://api.gleif.org/api/v1
+  tags:
+  - Reference Data
+  properties:
+  - type: OpenAPI
+    url: openapi/gleif-reference-data-api-openapi.yml
+  - type: Documentation
+    url: https://www.gleif.org/en/lei-data/gleif-api
+  - type: PostmanDocumentation
+    url: https://documenter.getpostman.com/view/7679680/SVYrrxuU
+  - type: JSONSchema
+    url: json-schema/gleif-lei-record-schema.json
+  - type: Examples
+    url: examples/gleif-lei-record-example.json
+  - type: Examples
+    url: examples/gleif-lei-records-list-example.json
+- aid: gleif:gleif-search-api
+  name: GLEIF Search API
+  description: Search and autocomplete operations
+  humanURL: https://www.gleif.org/en/lei-data/gleif-api
+  baseURL: https://api.gleif.org/api/v1
+  tags:
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/gleif-search-api-openapi.yml
+  - type: Documentation
+    url: https://www.gleif.org/en/lei-data/gleif-api
+  - type: PostmanDocumentation
+    url: https://documenter.getpostman.com/view/7679680/SVYrrxuU
+  - type: JSONSchema
+    url: json-schema/gleif-lei-record-schema.json
+  - type: Examples
+    url: examples/gleif-lei-record-example.json
+  - type: Examples
+    url: examples/gleif-lei-records-list-example.json
 common:
   - type: AgenticAccess
     url: agentic-access/gleif-agentic-access.yml
