@@ -1,0 +1,22 @@
+{
+  "provider": "gleif",
+  "sources": [
+    "gleif-corporate-relationships-api-openapi.yml",
+    "gleif-lei-issuers-api-openapi.yml",
+    "gleif-lei-records-api-openapi.yml",
+    "gleif-reference-data-api-openapi.yml",
+    "gleif-search-api-openapi.yml"
+  ],
+  "outputs": [
+    "gleif-corporate-relationships-api-openapi.yml",
+    "gleif-lei-issuers-api-openapi.yml",
+    "gleif-lei-records-api-openapi.yml",
+    "gleif-reference-data-api-openapi.yml",
+    "gleif-search-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
