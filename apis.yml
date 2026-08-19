@@ -1,4 +1,4 @@
-aid: https://raw.githubusercontent.com/api-evangelist/gleif/refs/heads/main/apis.yml
+aid: gleif
 name: GLEIF
 description: >
   The Global Legal Entity Identifier Foundation (GLEIF) provides a free, open REST
@@ -27,7 +27,7 @@ image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/gleif.png
 url: https://raw.githubusercontent.com/api-evangelist/gleif/refs/heads/main/apis.yml
 created: "2026-06-12"
 modified: "2026-06-12"
-specificationVersion: "0.19"
+specificationVersion: '0.23'
 tags:
   - Legal Entity Identifier
   - LEI
