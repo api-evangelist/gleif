@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "GLEIF LEI Corporate Relationships Search API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fuzzy autocomplete suggestions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gleif.org/api/v1/fuzzycompletions",
+            "params": [
+              {
+                "name": "field",
+                "value": "",
+                "type": "query",
+                "description": "The field to search against"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "The search query string"
+              }
+            ]
+          },
+          "docs": "Returns fuzzy-matched autocomplete suggestions for entity names and addresses. Useful for building typeahead search UI components.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,134 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "GLEIF LEI Corporate Relationships LEI Issuers API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "LEI Issuers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the managing LEI Issuer for a record",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gleif.org/api/v1/lei-records/:lei/managing-lou",
+            "params": [
+              {
+                "name": "lei",
+                "value": "",
+                "type": "path",
+                "description": "The 20-character Legal Entity Identifier code"
+              }
+            ]
+          },
+          "docs": "Returns the LEI Issuer (LOU) responsible for managing this LEI record."
+        },
+        {
+          "info": {
+            "name": "Get the LEI Issuer for a record",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gleif.org/api/v1/lei-records/:lei/lei-issuer",
+            "params": [
+              {
+                "name": "lei",
+                "value": "",
+                "type": "path",
+                "description": "The 20-character Legal Entity Identifier code"
+              }
+            ]
+          },
+          "docs": "Returns the LEI Issuer (LOU) that issued this LEI record."
+        },
+        {
+          "info": {
+            "name": "List LEI Issuers (LOUs)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gleif.org/api/v1/lei-issuers",
+            "params": [
+              {
+                "name": "page[number]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of accredited LEI Issuers (Local Operating Units)."
+        },
+        {
+          "info": {
+            "name": "Get a single LEI Issuer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gleif.org/api/v1/lei-issuers/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The LEI code of the issuer"
+              }
+            ]
+          },
+          "docs": "Returns a single LEI Issuer by its LEI code."
+        },
+        {
+          "info": {
+            "name": "Get jurisdictions for a LEI Issuer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gleif.org/api/v1/lei-issuers/:id/jurisdictions",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the jurisdictions in which this LEI Issuer is accredited to issue LEIs."
+        },
+        {
+          "info": {
+            "name": "Get fund jurisdictions for a LEI Issuer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gleif.org/api/v1/lei-issuers/:id/fundJurisdictions",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the fund jurisdictions associated with this LEI Issuer."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,748 @@
+{
+  "item": [
+    {
+      "id": "f7e13d33-6b8c-410b-8446-21d04e32f7e9",
+      "name": "LEI Issuers",
+      "description": {
+        "content": "Operations on accredited LEI Issuers (Local Operating Units)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "668ae846-7236-4f80-a923-c3310b1bf438",
+          "name": "Get the managing LEI Issuer for a record",
+          "request": {
+            "name": "Get the managing LEI Issuer for a record",
+            "description": {
+              "content": "Returns the LEI Issuer (LOU) responsible for managing this LEI record.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lei-records",
+                ":lei",
+                "managing-lou"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lei",
+                  "description": "(Required) The 20-character Legal Entity Identifier code"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8fbfa4a9-e4e3-4eb3-91e7-fe331a35bb91",
+              "name": "The managing LEI Issuer record",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lei-records",
+                    ":lei",
+                    "managing-lou"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) The 20-character Legal Entity Identifier code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"goldenCopy\": {\n      \"publishDate\": \"2026-06-12T08:00:00Z\"\n    }\n  },\n  \"data\": {\n    \"type\": \"lei-issuers\",\n    \"id\": \"029200067A7K6CH0H586\",\n    \"attributes\": {\n      \"lei\": \"029200067A7K6CH0H586\",\n      \"name\": \"Central Securities Clearing System PLC\",\n      \"marketingName\": \"string\",\n      \"website\": \"http://kh.dcviQUl4rYmlKGfqvxJX0XIlqDw7fO\",\n      \"accreditationDate\": \"1956-06-09T15:51:14.245Z\"\n    },\n    \"relationships\": {\n      \"jurisdictions\": {\n        \"links\": {\n          \"related\": \"https://KVUEgOVGPHYDYqMbIdIenAtRCZTVW.mjocjqFrWhEKRzjEIGVDkB8-lnwhGhlgKF4kvy1XsxA8i4+8\"\n        }\n      },\n      \"fundJurisdictions\": {\n        \"links\": {\n          \"related\": \"http://vRMrNzpzPrGXiikForXTjEe.htidVV1R,WzlyN7P7SWamPBxH7mMngE94xd8hjhhO,ijwagd2fjNq6rkuJT24SwUbWiAX+bqtA3A\"\n        }\n      }\n    },\n    \"links\": {\n      \"self\": \"http://ynvvndOyOfXtcj.jzh5Q259RWoqjd62+pXmEDlKqtQWAlFWP+qXu3QCgb07qFs2hZJ0mQ-8rjnJ0FY,g1uGH\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "db57fee0-3830-429b-8630-85f4854d3f97",
+              "name": "LEI record not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lei-records",
+                    ":lei",
+                    "managing-lou"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) The 20-character Legal Entity Identifier code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"status\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7dfacac3-f5bc-4f1a-b4ce-2a7037053750",
+          "name": "Get the LEI Issuer for a record",
+          "request": {
+            "name": "Get the LEI Issuer for a record",
+            "description": {
+              "content": "Returns the LEI Issuer (LOU) that issued this LEI record.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lei-records",
+                ":lei",
+                "lei-issuer"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lei",
+                  "description": "(Required) The 20-character Legal Entity Identifier code"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ce35f514-8830-42ac-bbfb-73b456e75b72",
+              "name": "The LEI Issuer record",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lei-records",
+                    ":lei",
+                    "lei-issuer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) The 20-character Legal Entity Identifier code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"goldenCopy\": {\n      \"publishDate\": \"2026-06-12T08:00:00Z\"\n    }\n  },\n  \"data\": {\n    \"type\": \"lei-issuers\",\n    \"id\": \"029200067A7K6CH0H586\",\n    \"attributes\": {\n      \"lei\": \"029200067A7K6CH0H586\",\n      \"name\": \"Central Securities Clearing System PLC\",\n      \"marketingName\": \"string\",\n      \"website\": \"http://kh.dcviQUl4rYmlKGfqvxJX0XIlqDw7fO\",\n      \"accreditationDate\": \"1956-06-09T15:51:14.245Z\"\n    },\n    \"relationships\": {\n      \"jurisdictions\": {\n        \"links\": {\n          \"related\": \"https://KVUEgOVGPHYDYqMbIdIenAtRCZTVW.mjocjqFrWhEKRzjEIGVDkB8-lnwhGhlgKF4kvy1XsxA8i4+8\"\n        }\n      },\n      \"fundJurisdictions\": {\n        \"links\": {\n          \"related\": \"http://vRMrNzpzPrGXiikForXTjEe.htidVV1R,WzlyN7P7SWamPBxH7mMngE94xd8hjhhO,ijwagd2fjNq6rkuJT24SwUbWiAX+bqtA3A\"\n        }\n      }\n    },\n    \"links\": {\n      \"self\": \"http://ynvvndOyOfXtcj.jzh5Q259RWoqjd62+pXmEDlKqtQWAlFWP+qXu3QCgb07qFs2hZJ0mQ-8rjnJ0FY,g1uGH\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "09fb91d2-4ca0-49f6-832f-3bbd1ed17529",
+              "name": "LEI record not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lei-records",
+                    ":lei",
+                    "lei-issuer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) The 20-character Legal Entity Identifier code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"status\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "08b08976-61ea-4859-b3d5-17639e81d4f7",
+          "name": "List LEI Issuers (LOUs)",
+          "request": {
+            "name": "List LEI Issuers (LOUs)",
+            "description": {
+              "content": "Returns a paginated list of accredited LEI Issuers (Local Operating Units).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lei-issuers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page[number]",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[size]",
+                  "value": "10"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3c3e43e0-84d9-4562-ae4c-6b2e78ab93f0",
+              "name": "Paginated list of LEI Issuers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lei-issuers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"goldenCopy\": {\n      \"publishDate\": \"2023-08-28T10:38:34.074Z\"\n    },\n    \"pagination\": {\n      \"currentPage\": 1,\n      \"perPage\": 10,\n      \"from\": 1,\n      \"to\": 10,\n      \"total\": 3338758,\n      \"lastPage\": 333876\n    }\n  },\n  \"links\": {\n    \"first\": \"http://ubnxBfQRYvPlBaC.kthhhGrwKeL8FLfotir.QBPZmEF1.w+NyihX48za0wLP9yKwZi58V7L+vwD-T4jgWh\",\n    \"next\": \"http://DghYBurhOvqhSEOokiQbmwujTDuf.sqpfgKZM0yPsWB40xhdDPdGOarjLpXYfQRTwK0wbhJVdQBctt-ydNfdYFlGp\",\n    \"last\": \"http://fysCFKpgooCoBOoQDIMHhQKAjvSo.gyvcpb+1baB5v28jAqzVC9JIIM1bUa0hJwd7S+,xgABeG4Z-L57x9wlEmhEhf37YP6VKbX1vP\"\n  },\n  \"data\": [\n    {\n      \"type\": \"lei-issuers\",\n      \"id\": \"029200067A7K6CH0H586\",\n      \"attributes\": {\n        \"lei\": \"029200067A7K6CH0H586\",\n        \"name\": \"Central Securities Clearing System PLC\",\n        \"marketingName\": \"string\",\n        \"website\": \"https://vlsHYFbRCnplwwDbzFD.pjF,O8S.nX4s0nYZ7cKYDUXymet0zfVU93Qwnw+\",\n        \"accreditationDate\": \"2010-01-04T09:18:01.218Z\"\n      },\n      \"relationships\": {\n        \"jurisdictions\": {\n          \"links\": {\n            \"related\": \"http://qURPVPzpgXQrJsBRuyULHYrmIBThFJpY.evgqgu4z,uZpXW-K5hi7UVfE3BgnTPhVFD2+Q8f+IemNFRvPGzGf.ci27qTx9BN+JWnvmdQ0+VkleUtfN\"\n          }\n        },\n        \"fundJurisdictions\": {\n          \"links\": {\n            \"related\": \"http://FtCAYhSxiZkmXdzlDQdrYYuRs.bigq7I.caU8k7ZhKfOqqoBjgFbs4Qp.W27EQHX4pdH3mkbx\"\n          }\n        }\n      },\n      \"links\": {\n        \"self\": \"http://yEzLvuzmOISthlmHKOoVlYJg.xqHOc0N9bEfXMnQpI+t2qdqncXHDGJco.-lRcv\"\n      }\n    },\n    {\n      \"type\": \"lei-issuers\",\n      \"id\": \"029200067A7K6CH0H586\",\n      \"attributes\": {\n        \"lei\": \"029200067A7K6CH0H586\",\n        \"name\": \"Central Securities Clearing System PLC\",\n        \"marketingName\": \"string\",\n        \"website\": \"https://QQkiiHlpCMNApkOLEalvnflrWbC.bhyvFa4UnVB-VvQ0AjuKSSys+J0OhTufeqsw2UKvfqw-gTze\",\n        \"accreditationDate\": \"2007-05-31T17:51:37.873Z\"\n      },\n      \"relationships\": {\n        \"jurisdictions\": {\n          \"links\": {\n            \"related\": \"http://UKDNnivGZYiPkDEguHyBJ.gddO81QoT-Hgmzo9JOPcP39hp+\"\n          }\n        },\n        \"fundJurisdictions\": {\n          \"links\": {\n            \"related\": \"http://FhrYdhy.famOs.1X.-CGJ\"\n          }\n        }\n      },\n      \"links\": {\n        \"self\": \"https://tTXrBmuZOSgyAnfHofrYzgQ.fhpYRmrt\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7e966468-0789-4311-861e-a1fe444681f0",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lei-issuers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"status\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3e2112fa-a0aa-4ba4-9845-147531f875c0",
+          "name": "Get a single LEI Issuer",
+          "request": {
+            "name": "Get a single LEI Issuer",
+            "description": {
+              "content": "Returns a single LEI Issuer by its LEI code.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lei-issuers",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The LEI code of the issuer"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8538e616-cf1b-4358-bd87-3cddcb017a68",
+              "name": "Successful response with a single LEI Issuer",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lei-issuers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The LEI code of the issuer"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"goldenCopy\": {\n      \"publishDate\": \"2026-06-12T08:00:00Z\"\n    }\n  },\n  \"data\": {\n    \"type\": \"lei-issuers\",\n    \"id\": \"029200067A7K6CH0H586\",\n    \"attributes\": {\n      \"lei\": \"029200067A7K6CH0H586\",\n      \"name\": \"Central Securities Clearing System PLC\",\n      \"marketingName\": \"string\",\n      \"website\": \"http://kh.dcviQUl4rYmlKGfqvxJX0XIlqDw7fO\",\n      \"accreditationDate\": \"1956-06-09T15:51:14.245Z\"\n    },\n    \"relationships\": {\n      \"jurisdictions\": {\n        \"links\": {\n          \"related\": \"https://KVUEgOVGPHYDYqMbIdIenAtRCZTVW.mjocjqFrWhEKRzjEIGVDkB8-lnwhGhlgKF4kvy1XsxA8i4+8\"\n        }\n      },\n      \"fundJurisdictions\": {\n        \"links\": {\n          \"related\": \"http://vRMrNzpzPrGXiikForXTjEe.htidVV1R,WzlyN7P7SWamPBxH7mMngE94xd8hjhhO,ijwagd2fjNq6rkuJT24SwUbWiAX+bqtA3A\"\n        }\n      }\n    },\n    \"links\": {\n      \"self\": \"http://ynvvndOyOfXtcj.jzh5Q259RWoqjd62+pXmEDlKqtQWAlFWP+qXu3QCgb07qFs2hZJ0mQ-8rjnJ0FY,g1uGH\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fde49797-4e4e-4315-a2e7-03615feceb9e",
+              "name": "LEI Issuer not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lei-issuers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The LEI code of the issuer"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"status\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9f47da5d-43b2-4626-9c9f-a4f311997098",
+          "name": "Get jurisdictions for a LEI Issuer",
+          "request": {
+            "name": "Get jurisdictions for a LEI Issuer",
+            "description": {
+              "content": "Returns the jurisdictions in which this LEI Issuer is accredited to issue LEIs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lei-issuers",
+                ":id",
+                "jurisdictions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "52ef8f87-c7d1-42c4-a7fc-d02ddd69c06c",
+              "name": "List of jurisdictions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lei-issuers",
+                    ":id",
+                    "jurisdictions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aec860c8-7a43-4d95-86b8-89261cbe6072",
+          "name": "Get fund jurisdictions for a LEI Issuer",
+          "request": {
+            "name": "Get fund jurisdictions for a LEI Issuer",
+            "description": {
+              "content": "Returns the fund jurisdictions associated with this LEI Issuer.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lei-issuers",
+                ":id",
+                "fundJurisdictions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c7b313ff-cd14-4ecc-92d0-9b97420c4897",
+              "name": "List of fund jurisdictions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lei-issuers",
+                    ":id",
+                    "fundJurisdictions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.gleif.org/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "19c9016b-0b11-459a-a4f8-2d48296ff130",
+    "name": "GLEIF LEI Corporate Relationships LEI Issuers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The GLEIF LEI API provides programmatic access to the Global Legal Entity Identifier (LEI) System's full data pool. It enables searches by entity name, LEI code, BIC code, ISIN code, and corporate relationship structures. The API is free, open, and requires no authentication or API key. It is built on the GLEIF Golden Copy dataset which is updated three times daily.\n\n\nContact Support:\n Name: GLEIF",
+      "type": "text/plain"
+    }
+  }
+}

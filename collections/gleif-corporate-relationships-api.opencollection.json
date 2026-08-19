@@ -1,0 +1,76 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "GLEIF LEI Corporate Relationships API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Corporate Relationships",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get direct children of a legal entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gleif.org/api/v1/lei-records/:lei/direct-children",
+            "params": [
+              {
+                "name": "lei",
+                "value": "",
+                "type": "path",
+                "description": "The 20-character Legal Entity Identifier code"
+              },
+              {
+                "name": "page[number]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns LEI records of entities that are directly owned/controlled by the specified entity."
+        },
+        {
+          "info": {
+            "name": "Get ultimate children of a legal entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gleif.org/api/v1/lei-records/:lei/ultimate-children",
+            "params": [
+              {
+                "name": "lei",
+                "value": "",
+                "type": "path",
+                "description": "The 20-character Legal Entity Identifier code"
+              },
+              {
+                "name": "page[number]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns all ultimate children (full subsidiary tree) of the specified entity."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

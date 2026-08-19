@@ -1,0 +1,486 @@
+{
+  "item": [
+    {
+      "id": "f6992297-0094-434a-a176-ba703aff7fd5",
+      "name": "Reference Data",
+      "description": {
+        "content": "Reference data including entity legal forms and registration authorities",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e97eeb2b-207c-441d-a74f-a5d5e4f8cc78",
+          "name": "List entity legal forms",
+          "request": {
+            "name": "List entity legal forms",
+            "description": {
+              "content": "Returns a paginated list of Entity Legal Form (ELF) codes as defined by ISO 20275.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "entity-legal-forms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page[number]",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[size]",
+                  "value": "10"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[countryCode]",
+                  "value": "<string>",
+                  "description": "Filter by ISO 3166-1 alpha-2 country code"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "060dab39-df96-4242-9357-8b0347496a36",
+              "name": "Paginated list of entity legal forms",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entity-legal-forms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "10"
+                    },
+                    {
+                      "key": "filter[countryCode]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"goldenCopy\": {\n      \"publishDate\": \"1950-11-07T21:18:54.108Z\"\n    },\n    \"pagination\": {\n      \"currentPage\": 1,\n      \"perPage\": 10,\n      \"from\": 1,\n      \"to\": 10,\n      \"total\": 3338758,\n      \"lastPage\": 333876\n    }\n  },\n  \"links\": {\n    \"first\": \"https://lBFZdgjRMepENUhFRNmqoj.reAG3lRXfU76WReNmhpksikTwGUD5orSgn43Auq6.wZBgMSJSYy1Vsqu\",\n    \"next\": \"https://hijCOcLIuQbKplfWiEVrZxaHpUMDv.hdrtQogyI+WzMkfBVBuBcEobjbtRm4mCIwdw+FR\",\n    \"last\": \"https://yKAERKvFVArSkbsADeGoMJTFIeSZEgQl.jznmfh1ue\"\n  },\n  \"data\": [\n    {\n      \"type\": \"entity-legal-forms\",\n      \"id\": \"09K3\",\n      \"attributes\": {\n        \"code\": \"09K3\",\n        \"country\": \"Faroe Islands\",\n        \"jurisdiction\": \"string\",\n        \"countryCode\": \"FO\",\n        \"subdivisionCode\": \"string\",\n        \"dateCreated\": \"1975-07-23\",\n        \"status\": \"INAC\"\n      }\n    },\n    {\n      \"type\": \"entity-legal-forms\",\n      \"id\": \"09K3\",\n      \"attributes\": {\n        \"code\": \"09K3\",\n        \"country\": \"Faroe Islands\",\n        \"jurisdiction\": \"string\",\n        \"countryCode\": \"FO\",\n        \"subdivisionCode\": \"string\",\n        \"dateCreated\": \"2005-07-23\",\n        \"status\": \"INAC\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9418faca-8190-4ae1-a3db-8e11460a81b4",
+          "name": "Get a single entity legal form",
+          "request": {
+            "name": "Get a single entity legal form",
+            "description": {
+              "content": "Returns a single Entity Legal Form by its ELF code.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "entity-legal-forms",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ELF (Entity Legal Form) code"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "697752de-15fd-46a5-adf5-2e7c7e0de95e",
+              "name": "Single entity legal form record",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entity-legal-forms",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ELF (Entity Legal Form) code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "938b4aee-db1f-4487-893c-f5ae5a735b00",
+              "name": "Entity legal form not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entity-legal-forms",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ELF (Entity Legal Form) code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"status\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a543f3eb-93b2-4eec-b6a6-719f0c30e606",
+          "name": "List registration authorities",
+          "request": {
+            "name": "List registration authorities",
+            "description": {
+              "content": "Returns a paginated list of registration authorities used to validate LEI data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "registration-authorities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page[number]",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[size]",
+                  "value": "10"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b40ab18f-6ed6-433a-8c89-301567160a81",
+              "name": "Paginated list of registration authorities",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "registration-authorities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"goldenCopy\": {\n      \"publishDate\": \"1988-02-03T21:17:39.752Z\"\n    },\n    \"pagination\": {\n      \"currentPage\": 1,\n      \"perPage\": 10,\n      \"from\": 1,\n      \"to\": 10,\n      \"total\": 3338758,\n      \"lastPage\": 333876\n    }\n  },\n  \"links\": {\n    \"first\": \"https://tsaYmhcybbEuAhhcgURCtwdJYi.rtwyn,-.bZ2qvCaYDveO4LedQI6NCEue9Vs0IbRIHXkd5BixBh3o1LsBUq83z5JIGbsu91nW,f2\",\n    \"next\": \"https://MzmEjtMPQdQgwsutzbAnpxkaoE.fmpla,KRp-tkBNYAA6ZnWBeca.XJ.QPSSLh-WVdVEcmFiBVkl\",\n    \"last\": \"http://fZWh.fmchH4fWuETDEawbHY9yupco0tZran,OLG6I\"\n  },\n  \"data\": [\n    {\n      \"type\": \"registration-authorities\",\n      \"id\": \"RA000001\",\n      \"attributes\": {\n        \"code\": \"RA000001\",\n        \"internationalName\": \"string\",\n        \"localName\": \"string\",\n        \"internationalOrganizationName\": \"string\",\n        \"localOrganizationName\": \"string\",\n        \"website\": \"https://WfvHmhCgiW.uxdpi4tN97vk3EeH4Ly3L9wkiMldUIogPFm3p6K,oTG0SCgCbMyVYuPxTnAkSk\"\n      }\n    },\n    {\n      \"type\": \"registration-authorities\",\n      \"id\": \"RA000001\",\n      \"attributes\": {\n        \"code\": \"RA000001\",\n        \"internationalName\": \"string\",\n        \"localName\": \"string\",\n        \"internationalOrganizationName\": \"string\",\n        \"localOrganizationName\": \"string\",\n        \"website\": \"http://LyKCtcFP.uhgf7YSGo4yRF4X-7rU,0hEn66eOQMTlyF6LDzXTqASFE\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0310cbdd-4b00-42c3-bb4d-bc1e9e19f798",
+          "name": "Get a single registration authority",
+          "request": {
+            "name": "Get a single registration authority",
+            "description": {
+              "content": "Returns a single registration authority by its RA code.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "registration-authorities",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The registration authority code (e.g. RA000001)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "53c5f865-32dc-496f-9b50-941a9ccba0ae",
+              "name": "Single registration authority record",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "registration-authorities",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The registration authority code (e.g. RA000001)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5b52844a-ec32-4c7a-99c5-b8538ec53619",
+              "name": "Registration authority not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "registration-authorities",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The registration authority code (e.g. RA000001)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"status\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.gleif.org/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5eef3ebe-47fa-4b5f-b4d6-9da2d06ea450",
+    "name": "GLEIF LEI Corporate Relationships Reference Data API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The GLEIF LEI API provides programmatic access to the Global Legal Entity Identifier (LEI) System's full data pool. It enables searches by entity name, LEI code, BIC code, ISIN code, and corporate relationship structures. The API is free, open, and requires no authentication or API key. It is built on the GLEIF Golden Copy dataset which is updated three times daily.\n\n\nContact Support:\n Name: GLEIF",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "item": [
+    {
+      "id": "4167af15-d491-4c53-a756-50c08d19b41f",
+      "name": "Search",
+      "description": {
+        "content": "Search and autocomplete operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "264ed2a4-c6b4-4a07-9f2b-92bd041e0dc5",
+          "name": "Fuzzy autocomplete suggestions",
+          "request": {
+            "name": "Fuzzy autocomplete suggestions",
+            "description": {
+              "content": "Returns fuzzy-matched autocomplete suggestions for entity names and addresses. Useful for building typeahead search UI components.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "fuzzycompletions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "field",
+                  "value": "<string>",
+                  "description": "(Required) The field to search against"
+                },
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "(Required) The search query string"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8c592142-97bb-40b3-abd0-2400633be196",
+              "name": "List of fuzzy completion suggestions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fuzzycompletions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "field",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"type\": \"fuzzycompletions\",\n      \"attributes\": {\n        \"value\": \"string\"\n      },\n      \"relationships\": {}\n    },\n    {\n      \"type\": \"fuzzycompletions\",\n      \"attributes\": {\n        \"value\": \"string\"\n      },\n      \"relationships\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "04a5ebfc-b1d6-4646-b53a-142fdda95e02",
+              "name": "Missing or invalid required parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fuzzycompletions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "field",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"status\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.gleif.org/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "7ab0cf25-5709-4fbc-ba6d-181197783fac",
+    "name": "GLEIF LEI Corporate Relationships Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The GLEIF LEI API provides programmatic access to the Global Legal Entity Identifier (LEI) System's full data pool. It enables searches by entity name, LEI code, BIC code, ISIN code, and corporate relationship structures. The API is free, open, and requires no authentication or API key. It is built on the GLEIF Golden Copy dataset which is updated three times daily.\n\n\nContact Support:\n Name: GLEIF",
+      "type": "text/plain"
+    }
+  }
+}

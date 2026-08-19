@@ -1,0 +1,1174 @@
+{
+  "item": [
+    {
+      "id": "95f495a1-4ce8-4cc8-8e98-d8dd646547fe",
+      "name": "LEI Records",
+      "description": {
+        "content": "Operations on Legal Entity Identifier records",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "69fd0459-1c21-459e-8ef6-4a39c54a9915",
+          "name": "List or search LEI records",
+          "request": {
+            "name": "List or search LEI records",
+            "description": {
+              "content": "Returns a paginated list of LEI records. Supports full-text search, field-specific filters, and fuzzy matching. The Golden Copy dataset is updated three times daily.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lei-records"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page[number]",
+                  "value": "1",
+                  "description": "Page number for pagination (1-indexed)"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[size]",
+                  "value": "10",
+                  "description": "Number of results per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[fulltext]",
+                  "value": "<string>",
+                  "description": "Full-text search across all fields"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[entity.legalName]",
+                  "value": "<string>",
+                  "description": "Filter by legal name of the entity"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[entity.status]",
+                  "value": "<string>",
+                  "description": "Filter by entity status"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[registration.status]",
+                  "value": "<string>",
+                  "description": "Filter by LEI registration status"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[entity.jurisdiction]",
+                  "value": "<string>",
+                  "description": "Filter by jurisdiction (ISO 3166-1 alpha-2 or ISO 3166-2 region code)"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[entity.legalForm.id]",
+                  "value": "<string>",
+                  "description": "Filter by legal form ELF code"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[registration.managingLou]",
+                  "value": "<string>",
+                  "description": "Filter by managing LEI Issuer (LOU) LEI code"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Field to sort by (prefix with - for descending order)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0e3e3920-0c6d-4461-9258-6b26ad96f200",
+              "name": "Successful response with paginated LEI records",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lei-records"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "10"
+                    },
+                    {
+                      "key": "filter[fulltext]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[entity.legalName]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[entity.status]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[registration.status]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[entity.jurisdiction]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[entity.legalForm.id]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[registration.managingLou]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"goldenCopy\": {\n      \"publishDate\": \"2025-01-13T10:30:08.125Z\"\n    },\n    \"pagination\": {\n      \"currentPage\": 1,\n      \"perPage\": 10,\n      \"from\": 1,\n      \"to\": 10,\n      \"total\": 3338758,\n      \"lastPage\": 333876\n    }\n  },\n  \"links\": {\n    \"first\": \"http://OjnyyqkTLKAURFrhxv.savitpbI4pCaCM0O4P0rJTaHGDMiWfXhRR4+MXVysrBcdFTae4YkpNDQZE62KzW\",\n    \"next\": \"http://EfIqUuWrScFVRKhwsULL.cqezyhRYcYZV4f.Lyr88UF9j,9kv+,qSaw2LEaeQCHtI-tLO,\",\n    \"last\": \"http://qDkEkiRsb.wtcgRr1Zovtqyq+KsQd3pxzMA,8,VrdgKpSnNT.iYWZS+z0hu\"\n  },\n  \"data\": [\n    {\n      \"type\": \"lei-records\",\n      \"id\": \"636700STJZG4U8W2I596\",\n      \"attributes\": {\n        \"lei\": \"636700STJZG4U8W2I596\",\n        \"entity\": {\n          \"legalName\": {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"language\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"otherNames\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"transliteratedOtherNames\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"legalAddress\": {\n            \"language\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"addressLines\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"addressNumber\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"addressNumberWithinBuilding\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mailRouting\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"region\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"postalCode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"headquartersAddress\": {\n            \"language\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"addressLines\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"addressNumber\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"addressNumberWithinBuilding\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mailRouting\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"region\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"postalCode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"registeredAt\": {\n            \"id\": \"RA000544\",\n            \"other\": \"string\"\n          },\n          \"registeredAs\": \"string\",\n          \"jurisdiction\": \"SE\",\n          \"category\": \"BRANCH\",\n          \"legalForm\": {\n            \"id\": \"string\",\n            \"other\": \"string\"\n          },\n          \"associatedEntity\": {\n            \"lei\": \"string\",\n            \"name\": \"string\"\n          },\n          \"status\": \"RETIRED\",\n          \"expiration\": {\n            \"date\": \"1948-04-11T03:16:52.494Z\",\n            \"reason\": \"DISSOLVED\"\n          },\n          \"successorEntity\": {\n            \"lei\": \"string\",\n            \"name\": \"string\"\n          },\n          \"creationDate\": \"2005-11-23T10:48:25.458Z\",\n          \"subCategory\": \"string\"\n        },\n        \"registration\": {\n          \"initialRegistrationDate\": \"1969-06-08T18:11:46.581Z\",\n          \"lastUpdateDate\": \"2010-01-05T16:42:23.629Z\",\n          \"status\": \"CANCELLED\",\n          \"nextRenewalDate\": \"2006-11-10T18:57:02.896Z\",\n          \"managingLou\": \"549300O897ZC5H7CY412\",\n          \"corroborationLevel\": \"PARTIALLY_CORROBORATED\",\n          \"validatedAt\": {\n            \"id\": \"string\",\n            \"other\": \"string\"\n          },\n          \"validatedAs\": \"string\"\n        },\n        \"bic\": \"string\",\n        \"mic\": \"string\",\n        \"ocid\": \"string\",\n        \"qcc\": \"string\",\n        \"spglobal\": \"string\",\n        \"conformityFlag\": \"string\"\n      },\n      \"relationships\": {\n        \"managing-lou\": {\n          \"links\": {\n            \"related\": \"https://QVsDuwzMntqziGRRNrqOSQLFCUObcj.mxfCKVEtV2-IxHwCTBJGSAuAwCsM,9gPT3DAvRwZb,.8YswVYld7gZ4kDQCHZzy.1+dYFRui\"\n          }\n        },\n        \"lei-issuer\": {\n          \"links\": {\n            \"related\": \"https://tnlnULfjKWAkpJYoOany.tsn8r.tWZjwac9beyvayYGv8vdj9pE75UF-Jt8Unv0sgNnSfz\"\n          }\n        },\n        \"field-modifications\": {\n          \"links\": {\n            \"related\": \"http://rlQjqdzH.ykDz7.uTirKJTGENMxcfvkQ,Pd9oVNDuG.B-afvnThjRzN7fj.qzdRpa\"\n          }\n        }\n      },\n      \"links\": {\n        \"self\": \"http://EFIxXdbCXClqEZhWfYLGihkRW.qtCv8dwEAbRdBlpJL,ReP1XrrRkGLvxWn9Djb\"\n      }\n    },\n    {\n      \"type\": \"lei-records\",\n      \"id\": \"636700STJZG4U8W2I596\",\n      \"attributes\": {\n        \"lei\": \"636700STJZG4U8W2I596\",\n        \"entity\": {\n          \"legalName\": {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"language\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"otherNames\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"transliteratedOtherNames\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"legalAddress\": {\n            \"language\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"addressLines\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"addressNumber\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"addressNumberWithinBuilding\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mailRouting\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"region\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"postalCode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"headquartersAddress\": {\n            \"language\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"addressLines\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"addressNumber\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"addressNumberWithinBuilding\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mailRouting\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"region\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"postalCode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"registeredAt\": {\n            \"id\": \"RA000544\",\n            \"other\": \"string\"\n          },\n          \"registeredAs\": \"string\",\n          \"jurisdiction\": \"SE\",\n          \"category\": null,\n          \"legalForm\": {\n            \"id\": \"string\",\n            \"other\": \"string\"\n          },\n          \"associatedEntity\": {\n            \"lei\": \"string\",\n            \"name\": \"string\"\n          },\n          \"status\": \"DUPLICATE\",\n          \"expiration\": {\n            \"date\": \"2000-10-01T08:01:41.047Z\",\n            \"reason\": null\n          },\n          \"successorEntity\": {\n            \"lei\": \"string\",\n            \"name\": \"string\"\n          },\n          \"creationDate\": \"1971-11-20T06:47:29.450Z\",\n          \"subCategory\": \"string\"\n        },\n        \"registration\": {\n          \"initialRegistrationDate\": \"1950-07-27T06:32:19.947Z\",\n          \"lastUpdateDate\": \"1987-07-06T19:38:55.087Z\",\n          \"status\": \"TRANSFERRED\",\n          \"nextRenewalDate\": \"1990-12-23T02:03:49.004Z\",\n          \"managingLou\": \"549300O897ZC5H7CY412\",\n          \"corroborationLevel\": \"FULLY_CORROBORATED\",\n          \"validatedAt\": {\n            \"id\": \"string\",\n            \"other\": \"string\"\n          },\n          \"validatedAs\": \"string\"\n        },\n        \"bic\": \"string\",\n        \"mic\": \"string\",\n        \"ocid\": \"string\",\n        \"qcc\": \"string\",\n        \"spglobal\": \"string\",\n        \"conformityFlag\": \"string\"\n      },\n      \"relationships\": {\n        \"managing-lou\": {\n          \"links\": {\n            \"related\": \"https://cMNl.lkcrP.vnenIQXpQoh67koRQEoNGW-SQPYA61zIz4v8\"\n          }\n        },\n        \"lei-issuer\": {\n          \"links\": {\n            \"related\": \"https://DiymTz.goltxXnGNoIvPdrPScjnVRbT11yVV89j4req8LZtbvgQh4UvPrpojGAYXQf8m\"\n          }\n        },\n        \"field-modifications\": {\n          \"links\": {\n            \"related\": \"http://pBxTnvBwjXaxFjliHkaezFSqzwOt.xuvchgzTkcupV7pZDoUSE6Giz,KojA4+tKMhMswYWsaiqY-CtfWeAGX0Kl6\"\n          }\n        }\n      },\n      \"links\": {\n        \"self\": \"http://sprRNIx.ibpAwc5HxVsflrlZUJRYgw1BAZxu+JFdJfD.\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "63b8d912-f5fd-4e56-b4f4-ce5111f34218",
+              "name": "Bad request - invalid filter or parameter",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lei-records"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "10"
+                    },
+                    {
+                      "key": "filter[fulltext]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[entity.legalName]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[entity.status]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[registration.status]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[entity.jurisdiction]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[entity.legalForm.id]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[registration.managingLou]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"status\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e63aa563-08ae-43bd-80bc-d22987e6777d",
+          "name": "Get a single LEI record",
+          "request": {
+            "name": "Get a single LEI record",
+            "description": {
+              "content": "Returns a single LEI record by its 20-character LEI code.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lei-records",
+                ":lei"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lei",
+                  "description": "(Required) The 20-character Legal Entity Identifier code"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d285f9af-e04c-41d0-b0fe-e9bea1bf691c",
+              "name": "Successful response with a single LEI record",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lei-records",
+                    ":lei"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) The 20-character Legal Entity Identifier code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"goldenCopy\": {\n      \"publishDate\": \"2026-06-12T08:00:00Z\"\n    }\n  },\n  \"data\": {\n    \"type\": \"lei-records\",\n    \"id\": \"636700STJZG4U8W2I596\",\n    \"attributes\": {\n      \"lei\": \"636700STJZG4U8W2I596\",\n      \"entity\": {\n        \"legalName\": {\n          \"name\": \"Kommstart 174 AB (publ)\",\n          \"language\": \"sv\"\n        },\n        \"otherNames\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"language\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"language\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"transliteratedOtherNames\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"language\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"language\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"legalAddress\": {\n          \"language\": \"en\",\n          \"addressLines\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"addressNumber\": \"string\",\n          \"addressNumberWithinBuilding\": \"string\",\n          \"mailRouting\": \"string\",\n          \"city\": \"string\",\n          \"region\": \"string\",\n          \"country\": \"string\",\n          \"postalCode\": \"string\"\n        },\n        \"headquartersAddress\": {\n          \"language\": \"en\",\n          \"addressLines\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"addressNumber\": \"string\",\n          \"addressNumberWithinBuilding\": \"string\",\n          \"mailRouting\": \"string\",\n          \"city\": \"string\",\n          \"region\": \"string\",\n          \"country\": \"string\",\n          \"postalCode\": \"string\"\n        },\n        \"registeredAt\": {\n          \"id\": \"RA000544\",\n          \"other\": \"string\"\n        },\n        \"registeredAs\": \"string\",\n        \"jurisdiction\": \"SE\",\n        \"category\": null,\n        \"legalForm\": {\n          \"id\": \"string\",\n          \"other\": \"string\"\n        },\n        \"associatedEntity\": {\n          \"lei\": \"string\",\n          \"name\": \"string\"\n        },\n        \"status\": \"SOLE_PROPRIETOR\",\n        \"expiration\": {\n          \"date\": \"1957-08-13T07:01:19.475Z\",\n          \"reason\": \"CORPORATE_ACTION\"\n        },\n        \"successorEntity\": {\n          \"lei\": \"string\",\n          \"name\": \"string\"\n        },\n        \"creationDate\": \"1995-12-20T20:59:56.475Z\",\n        \"subCategory\": \"string\"\n      },\n      \"registration\": {\n        \"initialRegistrationDate\": \"2015-03-28T12:21:17.940Z\",\n        \"lastUpdateDate\": \"1980-06-02T11:43:09.861Z\",\n        \"status\": \"ISSUED\",\n        \"nextRenewalDate\": \"2008-10-12T22:43:59.711Z\",\n        \"managingLou\": \"549300O897ZC5H7CY412\",\n        \"corroborationLevel\": \"ENTITY_SUPPLIED_ONLY\",\n        \"validatedAt\": {\n          \"id\": \"string\",\n          \"other\": \"string\"\n        },\n        \"validatedAs\": \"string\"\n      },\n      \"bic\": \"string\",\n      \"mic\": \"string\",\n      \"ocid\": \"string\",\n      \"qcc\": \"string\",\n      \"spglobal\": \"string\",\n      \"conformityFlag\": \"string\"\n    },\n    \"relationships\": {\n      \"managing-lou\": {\n        \"links\": {\n          \"related\": \"http://LwJissk.mguxJtSXSF2L1kTLCH.0XZLU9KvWPV7K0SoLXQPwSrzek0F74CLfSN\"\n        }\n      },\n      \"lei-issuer\": {\n        \"links\": {\n          \"related\": \"https://rd.cgjUWwMPrH6-25may5qBpxxM45fsRbZVin7cqMU6T\"\n        }\n      },\n      \"field-modifications\": {\n        \"links\": {\n          \"related\": \"https://bzitJsxLSXInCzTnHvPLDQe.hjgj0Y6acroefhDWQIDe6nPX2z+rIwMJPl5+IaIYoobNxnasJedc1sx\"\n        }\n      }\n    },\n    \"links\": {\n      \"self\": \"http://dThkIbQiUhFWDudcfeUwECfSCCeEEIlW.sdzcmPUpWXi.Mf7eGoGii+7YzXlA2Zm-WYZwjlU\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1d8057de-b4e2-4f57-bbca-4c13d75e2e8b",
+              "name": "LEI record not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lei-records",
+                    ":lei"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) The 20-character Legal Entity Identifier code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"status\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "90611535-826a-435e-9c6c-a519f75539cc",
+          "name": "Get direct children of a legal entity",
+          "request": {
+            "name": "Get direct children of a legal entity",
+            "description": {
+              "content": "Returns LEI records of entities that are directly owned/controlled by the specified entity.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lei-records",
+                ":lei",
+                "direct-children"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page[number]",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[size]",
+                  "value": "10"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lei",
+                  "description": "(Required) The 20-character Legal Entity Identifier code"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9d2a5a9c-c200-46be-b307-333b393633c6",
+              "name": "Paginated list of child LEI records",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lei-records",
+                    ":lei",
+                    "direct-children"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) The 20-character Legal Entity Identifier code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"goldenCopy\": {\n      \"publishDate\": \"1969-02-25T16:49:50.468Z\"\n    },\n    \"pagination\": {\n      \"currentPage\": 1,\n      \"perPage\": 10,\n      \"from\": 1,\n      \"to\": 10,\n      \"total\": 3338758,\n      \"lastPage\": 333876\n    }\n  },\n  \"links\": {\n    \"first\": \"http://epJlvnrXievcypcoy.gdJzcQAvcEx,9D2sFKGAJn+iYD.HIDHv8J9yDym\",\n    \"next\": \"http://aTkSiwpUINPbCAEn.ppvfqiUPoLyNuLoKvCENGkYbXYHv2H.uX8MxD.MdgRfQ6gOX\",\n    \"last\": \"https://TwAoVOAqQyCoNQtYIcVvFnVyxh.kqgiOi2kJhw\"\n  },\n  \"data\": [\n    {\n      \"type\": \"lei-records\",\n      \"id\": \"636700STJZG4U8W2I596\",\n      \"attributes\": {\n        \"lei\": \"636700STJZG4U8W2I596\",\n        \"entity\": {\n          \"legalName\": {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"language\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"otherNames\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"transliteratedOtherNames\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"legalAddress\": {\n            \"language\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"addressLines\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"addressNumber\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"addressNumberWithinBuilding\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mailRouting\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"region\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"postalCode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"headquartersAddress\": {\n            \"language\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"addressLines\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"addressNumber\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"addressNumberWithinBuilding\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mailRouting\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"region\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"postalCode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"registeredAt\": {\n            \"id\": \"RA000544\",\n            \"other\": \"string\"\n          },\n          \"registeredAs\": \"string\",\n          \"jurisdiction\": \"SE\",\n          \"category\": \"FUND\",\n          \"legalForm\": {\n            \"id\": \"string\",\n            \"other\": \"string\"\n          },\n          \"associatedEntity\": {\n            \"lei\": \"string\",\n            \"name\": \"string\"\n          },\n          \"status\": \"LAPSED\",\n          \"expiration\": {\n            \"date\": \"2007-05-24T09:53:56.691Z\",\n            \"reason\": \"CORPORATE_ACTION\"\n          },\n          \"successorEntity\": {\n            \"lei\": \"string\",\n            \"name\": \"string\"\n          },\n          \"creationDate\": \"1952-11-02T10:11:52.046Z\",\n          \"subCategory\": \"string\"\n        },\n        \"registration\": {\n          \"initialRegistrationDate\": \"2024-10-30T12:17:52.430Z\",\n          \"lastUpdateDate\": \"2007-04-05T08:55:21.613Z\",\n          \"status\": \"DUPLICATE\",\n          \"nextRenewalDate\": \"1957-03-08T10:20:10.781Z\",\n          \"managingLou\": \"549300O897ZC5H7CY412\",\n          \"corroborationLevel\": \"PARTIALLY_CORROBORATED\",\n          \"validatedAt\": {\n            \"id\": \"string\",\n            \"other\": \"string\"\n          },\n          \"validatedAs\": \"string\"\n        },\n        \"bic\": \"string\",\n        \"mic\": \"string\",\n        \"ocid\": \"string\",\n        \"qcc\": \"string\",\n        \"spglobal\": \"string\",\n        \"conformityFlag\": \"string\"\n      },\n      \"relationships\": {\n        \"managing-lou\": {\n          \"links\": {\n            \"related\": \"https://kfN.gdMJ,NBV5bMv2fZjhO3jyvkFfrfxhHjREiDTcGUY46BZTT-5MfiC\"\n          }\n        },\n        \"lei-issuer\": {\n          \"links\": {\n            \"related\": \"http://aZOwRlUxdxRozr.otdtTYX.j9MfEHriQCDuGJgdF4P\"\n          }\n        },\n        \"field-modifications\": {\n          \"links\": {\n            \"related\": \"http://OCPmwFC.sjZeMjiezwSF90UAroMlIScD37DABNj.4XaLy02GBJLQu1fcN9RCfeyjaZ\"\n          }\n        }\n      },\n      \"links\": {\n        \"self\": \"https://mddHQEKDeEOxoA.hyhthMGWq0BxdYyw.QFZOqxtJlVeKeSbLrYxXRiYsrNPaiI2ph1\"\n      }\n    },\n    {\n      \"type\": \"lei-records\",\n      \"id\": \"636700STJZG4U8W2I596\",\n      \"attributes\": {\n        \"lei\": \"636700STJZG4U8W2I596\",\n        \"entity\": {\n          \"legalName\": {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"language\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"otherNames\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"transliteratedOtherNames\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"legalAddress\": {\n            \"language\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"addressLines\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"addressNumber\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"addressNumberWithinBuilding\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mailRouting\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"region\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"postalCode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"headquartersAddress\": {\n            \"language\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"addressLines\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"addressNumber\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"addressNumberWithinBuilding\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mailRouting\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"region\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"postalCode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"registeredAt\": {\n            \"id\": \"RA000544\",\n            \"other\": \"string\"\n          },\n          \"registeredAs\": \"string\",\n          \"jurisdiction\": \"SE\",\n          \"category\": \"BRANCH\",\n          \"legalForm\": {\n            \"id\": \"string\",\n            \"other\": \"string\"\n          },\n          \"associatedEntity\": {\n            \"lei\": \"string\",\n            \"name\": \"string\"\n          },\n          \"status\": \"ANNULLED\",\n          \"expiration\": {\n            \"date\": \"1971-11-20T00:55:07.492Z\",\n            \"reason\": \"CORPORATE_ACTION\"\n          },\n          \"successorEntity\": {\n            \"lei\": \"string\",\n            \"name\": \"string\"\n          },\n          \"creationDate\": \"1984-02-22T03:02:45.649Z\",\n          \"subCategory\": \"string\"\n        },\n        \"registration\": {\n          \"initialRegistrationDate\": \"1959-04-12T18:13:28.545Z\",\n          \"lastUpdateDate\": \"1992-02-15T19:07:43.311Z\",\n          \"status\": \"DUPLICATE\",\n          \"nextRenewalDate\": \"2018-08-16T23:04:01.687Z\",\n          \"managingLou\": \"549300O897ZC5H7CY412\",\n          \"corroborationLevel\": \"ENTITY_SUPPLIED_ONLY\",\n          \"validatedAt\": {\n            \"id\": \"string\",\n            \"other\": \"string\"\n          },\n          \"validatedAs\": \"string\"\n        },\n        \"bic\": \"string\",\n        \"mic\": \"string\",\n        \"ocid\": \"string\",\n        \"qcc\": \"string\",\n        \"spglobal\": \"string\",\n        \"conformityFlag\": \"string\"\n      },\n      \"relationships\": {\n        \"managing-lou\": {\n          \"links\": {\n            \"related\": \"http://QUMouztbEGJHCmttOIg.ipfwbmux0xpfbOXE6T20BGz\"\n          }\n        },\n        \"lei-issuer\": {\n          \"links\": {\n            \"related\": \"https://vzXMNJOikA.hqocGCRdTsxh1BzfqqUeI.+fx\"\n          }\n        },\n        \"field-modifications\": {\n          \"links\": {\n            \"related\": \"http://REQOaBkUfVMV.exnIer2TFGKzlQQ.ArFSjpjmwDzlZ2IZjdvOgA.IrAJUr6LoQY\"\n          }\n        }\n      },\n      \"links\": {\n        \"self\": \"https://oGrvHigZywAhGrrAUcbYRgEItAuVLf.xmtnqIcT6n+xbHamE2ZKQm3Q5,5xsWhs9LWFqNcs7j9\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3871821c-7062-4f81-801c-3fbd0b7d5640",
+              "name": "LEI record not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lei-records",
+                    ":lei",
+                    "direct-children"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) The 20-character Legal Entity Identifier code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"status\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d4a44abe-2087-4f9c-8736-66f77944208c",
+          "name": "Get ultimate children of a legal entity",
+          "request": {
+            "name": "Get ultimate children of a legal entity",
+            "description": {
+              "content": "Returns all ultimate children (full subsidiary tree) of the specified entity.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lei-records",
+                ":lei",
+                "ultimate-children"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page[number]",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[size]",
+                  "value": "10"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lei",
+                  "description": "(Required) The 20-character Legal Entity Identifier code"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7094ef64-f377-46ce-b622-2f6d7e1b6b88",
+              "name": "Paginated list of ultimate child LEI records",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lei-records",
+                    ":lei",
+                    "ultimate-children"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) The 20-character Legal Entity Identifier code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"goldenCopy\": {\n      \"publishDate\": \"1969-02-25T16:49:50.468Z\"\n    },\n    \"pagination\": {\n      \"currentPage\": 1,\n      \"perPage\": 10,\n      \"from\": 1,\n      \"to\": 10,\n      \"total\": 3338758,\n      \"lastPage\": 333876\n    }\n  },\n  \"links\": {\n    \"first\": \"http://epJlvnrXievcypcoy.gdJzcQAvcEx,9D2sFKGAJn+iYD.HIDHv8J9yDym\",\n    \"next\": \"http://aTkSiwpUINPbCAEn.ppvfqiUPoLyNuLoKvCENGkYbXYHv2H.uX8MxD.MdgRfQ6gOX\",\n    \"last\": \"https://TwAoVOAqQyCoNQtYIcVvFnVyxh.kqgiOi2kJhw\"\n  },\n  \"data\": [\n    {\n      \"type\": \"lei-records\",\n      \"id\": \"636700STJZG4U8W2I596\",\n      \"attributes\": {\n        \"lei\": \"636700STJZG4U8W2I596\",\n        \"entity\": {\n          \"legalName\": {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"language\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"otherNames\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"transliteratedOtherNames\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"legalAddress\": {\n            \"language\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"addressLines\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"addressNumber\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"addressNumberWithinBuilding\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mailRouting\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"region\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"postalCode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"headquartersAddress\": {\n            \"language\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"addressLines\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"addressNumber\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"addressNumberWithinBuilding\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mailRouting\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"region\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"postalCode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"registeredAt\": {\n            \"id\": \"RA000544\",\n            \"other\": \"string\"\n          },\n          \"registeredAs\": \"string\",\n          \"jurisdiction\": \"SE\",\n          \"category\": \"FUND\",\n          \"legalForm\": {\n            \"id\": \"string\",\n            \"other\": \"string\"\n          },\n          \"associatedEntity\": {\n            \"lei\": \"string\",\n            \"name\": \"string\"\n          },\n          \"status\": \"LAPSED\",\n          \"expiration\": {\n            \"date\": \"2007-05-24T09:53:56.691Z\",\n            \"reason\": \"CORPORATE_ACTION\"\n          },\n          \"successorEntity\": {\n            \"lei\": \"string\",\n            \"name\": \"string\"\n          },\n          \"creationDate\": \"1952-11-02T10:11:52.046Z\",\n          \"subCategory\": \"string\"\n        },\n        \"registration\": {\n          \"initialRegistrationDate\": \"2024-10-30T12:17:52.430Z\",\n          \"lastUpdateDate\": \"2007-04-05T08:55:21.613Z\",\n          \"status\": \"DUPLICATE\",\n          \"nextRenewalDate\": \"1957-03-08T10:20:10.781Z\",\n          \"managingLou\": \"549300O897ZC5H7CY412\",\n          \"corroborationLevel\": \"PARTIALLY_CORROBORATED\",\n          \"validatedAt\": {\n            \"id\": \"string\",\n            \"other\": \"string\"\n          },\n          \"validatedAs\": \"string\"\n        },\n        \"bic\": \"string\",\n        \"mic\": \"string\",\n        \"ocid\": \"string\",\n        \"qcc\": \"string\",\n        \"spglobal\": \"string\",\n        \"conformityFlag\": \"string\"\n      },\n      \"relationships\": {\n        \"managing-lou\": {\n          \"links\": {\n            \"related\": \"https://kfN.gdMJ,NBV5bMv2fZjhO3jyvkFfrfxhHjREiDTcGUY46BZTT-5MfiC\"\n          }\n        },\n        \"lei-issuer\": {\n          \"links\": {\n            \"related\": \"http://aZOwRlUxdxRozr.otdtTYX.j9MfEHriQCDuGJgdF4P\"\n          }\n        },\n        \"field-modifications\": {\n          \"links\": {\n            \"related\": \"http://OCPmwFC.sjZeMjiezwSF90UAroMlIScD37DABNj.4XaLy02GBJLQu1fcN9RCfeyjaZ\"\n          }\n        }\n      },\n      \"links\": {\n        \"self\": \"https://mddHQEKDeEOxoA.hyhthMGWq0BxdYyw.QFZOqxtJlVeKeSbLrYxXRiYsrNPaiI2ph1\"\n      }\n    },\n    {\n      \"type\": \"lei-records\",\n      \"id\": \"636700STJZG4U8W2I596\",\n      \"attributes\": {\n        \"lei\": \"636700STJZG4U8W2I596\",\n        \"entity\": {\n          \"legalName\": {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"language\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"otherNames\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"transliteratedOtherNames\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"legalAddress\": {\n            \"language\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"addressLines\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"addressNumber\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"addressNumberWithinBuilding\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mailRouting\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"region\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"postalCode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"headquartersAddress\": {\n            \"language\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"addressLines\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"addressNumber\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"addressNumberWithinBuilding\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mailRouting\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"region\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"postalCode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"registeredAt\": {\n            \"id\": \"RA000544\",\n            \"other\": \"string\"\n          },\n          \"registeredAs\": \"string\",\n          \"jurisdiction\": \"SE\",\n          \"category\": \"BRANCH\",\n          \"legalForm\": {\n            \"id\": \"string\",\n            \"other\": \"string\"\n          },\n          \"associatedEntity\": {\n            \"lei\": \"string\",\n            \"name\": \"string\"\n          },\n          \"status\": \"ANNULLED\",\n          \"expiration\": {\n            \"date\": \"1971-11-20T00:55:07.492Z\",\n            \"reason\": \"CORPORATE_ACTION\"\n          },\n          \"successorEntity\": {\n            \"lei\": \"string\",\n            \"name\": \"string\"\n          },\n          \"creationDate\": \"1984-02-22T03:02:45.649Z\",\n          \"subCategory\": \"string\"\n        },\n        \"registration\": {\n          \"initialRegistrationDate\": \"1959-04-12T18:13:28.545Z\",\n          \"lastUpdateDate\": \"1992-02-15T19:07:43.311Z\",\n          \"status\": \"DUPLICATE\",\n          \"nextRenewalDate\": \"2018-08-16T23:04:01.687Z\",\n          \"managingLou\": \"549300O897ZC5H7CY412\",\n          \"corroborationLevel\": \"ENTITY_SUPPLIED_ONLY\",\n          \"validatedAt\": {\n            \"id\": \"string\",\n            \"other\": \"string\"\n          },\n          \"validatedAs\": \"string\"\n        },\n        \"bic\": \"string\",\n        \"mic\": \"string\",\n        \"ocid\": \"string\",\n        \"qcc\": \"string\",\n        \"spglobal\": \"string\",\n        \"conformityFlag\": \"string\"\n      },\n      \"relationships\": {\n        \"managing-lou\": {\n          \"links\": {\n            \"related\": \"http://QUMouztbEGJHCmttOIg.ipfwbmux0xpfbOXE6T20BGz\"\n          }\n        },\n        \"lei-issuer\": {\n          \"links\": {\n            \"related\": \"https://vzXMNJOikA.hqocGCRdTsxh1BzfqqUeI.+fx\"\n          }\n        },\n        \"field-modifications\": {\n          \"links\": {\n            \"related\": \"http://REQOaBkUfVMV.exnIer2TFGKzlQQ.ArFSjpjmwDzlZ2IZjdvOgA.IrAJUr6LoQY\"\n          }\n        }\n      },\n      \"links\": {\n        \"self\": \"https://oGrvHigZywAhGrrAUcbYRgEItAuVLf.xmtnqIcT6n+xbHamE2ZKQm3Q5,5xsWhs9LWFqNcs7j9\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d4cf64c8-6d73-40cc-bc79-72fada2e3a73",
+              "name": "LEI record not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lei-records",
+                    ":lei",
+                    "ultimate-children"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) The 20-character Legal Entity Identifier code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"status\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "33f84b70-8cf0-4b91-b8c6-09920444cbcc",
+          "name": "Get the managing LEI Issuer for a record",
+          "request": {
+            "name": "Get the managing LEI Issuer for a record",
+            "description": {
+              "content": "Returns the LEI Issuer (LOU) responsible for managing this LEI record.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lei-records",
+                ":lei",
+                "managing-lou"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lei",
+                  "description": "(Required) The 20-character Legal Entity Identifier code"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c62b720b-d064-4bac-ab74-6134b7eb264c",
+              "name": "The managing LEI Issuer record",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lei-records",
+                    ":lei",
+                    "managing-lou"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) The 20-character Legal Entity Identifier code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"goldenCopy\": {\n      \"publishDate\": \"2026-06-12T08:00:00Z\"\n    }\n  },\n  \"data\": {\n    \"type\": \"lei-issuers\",\n    \"id\": \"029200067A7K6CH0H586\",\n    \"attributes\": {\n      \"lei\": \"029200067A7K6CH0H586\",\n      \"name\": \"Central Securities Clearing System PLC\",\n      \"marketingName\": \"string\",\n      \"website\": \"http://oFWNWwDIuCxSaeX.mlxlRhIPbl8nD1ATcsbLSkHTL5QMTNyGtNdbcDiGL560vqVuVvh5HMVDihYppz6jio44J25zztoVT+wBZ4qGcDSHa5C\",\n      \"accreditationDate\": \"1976-05-02T06:14:13.716Z\"\n    },\n    \"relationships\": {\n      \"jurisdictions\": {\n        \"links\": {\n          \"related\": \"http://rdtxrauYeSwgNDxSMFFfDDNoFRmdUr.fsnuHEHK5ZgUMm-31k3CzcrcPbVuZ4RD0AbnIuT9BbBiBFwkRLzO1SPDxK+xx-UCF\"\n        }\n      },\n      \"fundJurisdictions\": {\n        \"links\": {\n          \"related\": \"http://SgpAr.fytqC1uaVzYJY+maLjdpezseCywGj3-IDCy8sRmJAPF0cwH5-4ZIKP1xyEs731\"\n        }\n      }\n    },\n    \"links\": {\n      \"self\": \"https://ATjUKUNvkjJEcvDiYqoawxWVc.zpiaYBg6pvqtTFXlCdgm-OEm9LnzWBhjMh2e+PpF2jAX3hs-Uu9,uYg,CV1qpDTo0ZvTc\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "309800c8-7c0f-4dcd-9014-02ac70a39eb6",
+              "name": "LEI record not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lei-records",
+                    ":lei",
+                    "managing-lou"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) The 20-character Legal Entity Identifier code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"status\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ee141fd9-31e7-48d7-afdd-eff23e392623",
+          "name": "Get the LEI Issuer for a record",
+          "request": {
+            "name": "Get the LEI Issuer for a record",
+            "description": {
+              "content": "Returns the LEI Issuer (LOU) that issued this LEI record.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lei-records",
+                ":lei",
+                "lei-issuer"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lei",
+                  "description": "(Required) The 20-character Legal Entity Identifier code"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "edf74e33-7e83-412d-9bf8-76be95e8341c",
+              "name": "The LEI Issuer record",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lei-records",
+                    ":lei",
+                    "lei-issuer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) The 20-character Legal Entity Identifier code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"goldenCopy\": {\n      \"publishDate\": \"2026-06-12T08:00:00Z\"\n    }\n  },\n  \"data\": {\n    \"type\": \"lei-issuers\",\n    \"id\": \"029200067A7K6CH0H586\",\n    \"attributes\": {\n      \"lei\": \"029200067A7K6CH0H586\",\n      \"name\": \"Central Securities Clearing System PLC\",\n      \"marketingName\": \"string\",\n      \"website\": \"http://oFWNWwDIuCxSaeX.mlxlRhIPbl8nD1ATcsbLSkHTL5QMTNyGtNdbcDiGL560vqVuVvh5HMVDihYppz6jio44J25zztoVT+wBZ4qGcDSHa5C\",\n      \"accreditationDate\": \"1976-05-02T06:14:13.716Z\"\n    },\n    \"relationships\": {\n      \"jurisdictions\": {\n        \"links\": {\n          \"related\": \"http://rdtxrauYeSwgNDxSMFFfDDNoFRmdUr.fsnuHEHK5ZgUMm-31k3CzcrcPbVuZ4RD0AbnIuT9BbBiBFwkRLzO1SPDxK+xx-UCF\"\n        }\n      },\n      \"fundJurisdictions\": {\n        \"links\": {\n          \"related\": \"http://SgpAr.fytqC1uaVzYJY+maLjdpezseCywGj3-IDCy8sRmJAPF0cwH5-4ZIKP1xyEs731\"\n        }\n      }\n    },\n    \"links\": {\n      \"self\": \"https://ATjUKUNvkjJEcvDiYqoawxWVc.zpiaYBg6pvqtTFXlCdgm-OEm9LnzWBhjMh2e+PpF2jAX3hs-Uu9,uYg,CV1qpDTo0ZvTc\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c321cf36-4bbd-4b0d-b64f-879297e39fef",
+              "name": "LEI record not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lei-records",
+                    ":lei",
+                    "lei-issuer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) The 20-character Legal Entity Identifier code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"status\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c6f6cfb7-db4c-4f8f-b679-1d55d6f1f7d4",
+          "name": "Get field modification history for a LEI record",
+          "request": {
+            "name": "Get field modification history for a LEI record",
+            "description": {
+              "content": "Returns the history of field-level modifications for the specified LEI record.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lei-records",
+                ":lei",
+                "field-modifications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page[number]",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[size]",
+                  "value": "10"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lei",
+                  "description": "(Required) The 20-character Legal Entity Identifier code"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "694a5bb6-411d-4c49-b0c3-7398c1059c8a",
+              "name": "List of field modifications",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lei-records",
+                    ":lei",
+                    "field-modifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) The 20-character Legal Entity Identifier code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"goldenCopy\": {\n      \"publishDate\": \"2018-02-03T14:33:05.558Z\"\n    },\n    \"pagination\": {\n      \"currentPage\": 1,\n      \"perPage\": 10,\n      \"from\": 1,\n      \"to\": 10,\n      \"total\": 3338758,\n      \"lastPage\": 333876\n    }\n  },\n  \"links\": {\n    \"first\": \"https://rkTyjRwZwGGgALiDADsBDmxzWbdhn.pmlzSRjA2ZIOQJSsmTdbhmu\",\n    \"next\": \"https://MXeGGyVxNpDSdJCYHXw.szivmF,8LQt9gLjOAzx3zQ-M\",\n    \"last\": \"https://wkJkeHFGfuBDaGJAdeUxGMEdeSwBPfwe.nffdD3bdSL,TE.yxAuULOZz3AXdNXNn4Q8tyUnju8MBHA\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "95261aca-6109-4cfb-8443-f7d40e3009fc",
+              "name": "LEI record not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lei-records",
+                    ":lei",
+                    "field-modifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) The 20-character Legal Entity Identifier code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"status\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.gleif.org/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1f38b192-e58e-4209-940a-e5660cf4f063",
+    "name": "GLEIF LEI Corporate Relationships LEI Records API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The GLEIF LEI API provides programmatic access to the Global Legal Entity Identifier (LEI) System's full data pool. It enables searches by entity name, LEI code, BIC code, ISIN code, and corporate relationship structures. The API is free, open, and requires no authentication or API key. It is built on the GLEIF Golden Copy dataset which is updated three times daily.\n\n\nContact Support:\n Name: GLEIF",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,235 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "GLEIF LEI Corporate Relationships LEI Records API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "LEI Records",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List or search LEI records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gleif.org/api/v1/lei-records",
+            "params": [
+              {
+                "name": "page[number]",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination (1-indexed)"
+              },
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "filter[fulltext]",
+                "value": "",
+                "type": "query",
+                "description": "Full-text search across all fields"
+              },
+              {
+                "name": "filter[entity.legalName]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by legal name of the entity"
+              },
+              {
+                "name": "filter[entity.status]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by entity status"
+              },
+              {
+                "name": "filter[registration.status]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by LEI registration status"
+              },
+              {
+                "name": "filter[entity.jurisdiction]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by jurisdiction (ISO 3166-1 alpha-2 or ISO 3166-2 region code)"
+              },
+              {
+                "name": "filter[entity.legalForm.id]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by legal form ELF code"
+              },
+              {
+                "name": "filter[registration.managingLou]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by managing LEI Issuer (LOU) LEI code"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort by (prefix with - for descending order)"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of LEI records. Supports full-text search, field-specific filters, and fuzzy matching. The Golden Copy dataset is updated three times daily.\n"
+        },
+        {
+          "info": {
+            "name": "Get a single LEI record",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gleif.org/api/v1/lei-records/:lei",
+            "params": [
+              {
+                "name": "lei",
+                "value": "",
+                "type": "path",
+                "description": "The 20-character Legal Entity Identifier code"
+              }
+            ]
+          },
+          "docs": "Returns a single LEI record by its 20-character LEI code."
+        },
+        {
+          "info": {
+            "name": "Get direct children of a legal entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gleif.org/api/v1/lei-records/:lei/direct-children",
+            "params": [
+              {
+                "name": "lei",
+                "value": "",
+                "type": "path",
+                "description": "The 20-character Legal Entity Identifier code"
+              },
+              {
+                "name": "page[number]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns LEI records of entities that are directly owned/controlled by the specified entity."
+        },
+        {
+          "info": {
+            "name": "Get ultimate children of a legal entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gleif.org/api/v1/lei-records/:lei/ultimate-children",
+            "params": [
+              {
+                "name": "lei",
+                "value": "",
+                "type": "path",
+                "description": "The 20-character Legal Entity Identifier code"
+              },
+              {
+                "name": "page[number]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns all ultimate children (full subsidiary tree) of the specified entity."
+        },
+        {
+          "info": {
+            "name": "Get the managing LEI Issuer for a record",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gleif.org/api/v1/lei-records/:lei/managing-lou",
+            "params": [
+              {
+                "name": "lei",
+                "value": "",
+                "type": "path",
+                "description": "The 20-character Legal Entity Identifier code"
+              }
+            ]
+          },
+          "docs": "Returns the LEI Issuer (LOU) responsible for managing this LEI record."
+        },
+        {
+          "info": {
+            "name": "Get the LEI Issuer for a record",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gleif.org/api/v1/lei-records/:lei/lei-issuer",
+            "params": [
+              {
+                "name": "lei",
+                "value": "",
+                "type": "path",
+                "description": "The 20-character Legal Entity Identifier code"
+              }
+            ]
+          },
+          "docs": "Returns the LEI Issuer (LOU) that issued this LEI record."
+        },
+        {
+          "info": {
+            "name": "Get field modification history for a LEI record",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gleif.org/api/v1/lei-records/:lei/field-modifications",
+            "params": [
+              {
+                "name": "lei",
+                "value": "",
+                "type": "path",
+                "description": "The 20-character Legal Entity Identifier code"
+              },
+              {
+                "name": "page[number]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the history of field-level modifications for the specified LEI record."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

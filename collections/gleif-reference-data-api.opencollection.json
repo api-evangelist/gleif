@@ -1,0 +1,108 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "GLEIF LEI Corporate Relationships Reference Data API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reference Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List entity legal forms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gleif.org/api/v1/entity-legal-forms",
+            "params": [
+              {
+                "name": "page[number]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[countryCode]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by ISO 3166-1 alpha-2 country code"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of Entity Legal Form (ELF) codes as defined by ISO 20275."
+        },
+        {
+          "info": {
+            "name": "Get a single entity legal form",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gleif.org/api/v1/entity-legal-forms/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ELF (Entity Legal Form) code"
+              }
+            ]
+          },
+          "docs": "Returns a single Entity Legal Form by its ELF code."
+        },
+        {
+          "info": {
+            "name": "List registration authorities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gleif.org/api/v1/registration-authorities",
+            "params": [
+              {
+                "name": "page[number]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of registration authorities used to validate LEI data."
+        },
+        {
+          "info": {
+            "name": "Get a single registration authority",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gleif.org/api/v1/registration-authorities/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The registration authority code (e.g. RA000001)"
+              }
+            ]
+          },
+          "docs": "Returns a single registration authority by its RA code."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
