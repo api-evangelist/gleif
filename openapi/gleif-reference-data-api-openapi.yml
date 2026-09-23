@@ -1,9 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: GLEIF LEI Corporate Relationships Reference Data API
-  description: 'The GLEIF LEI API provides programmatic access to the Global Legal Entity Identifier (LEI) System''s full data pool. It enables searches by entity name, LEI code, BIC code, ISIN code, and corporate relationship structures. The API is free, open, and requires no authentication or API key. It is built on the GLEIF Golden Copy dataset which is updated three times daily.
-
-    '
+  title: GLEIF LEI Reference Data API
+  description: The GLEIF LEI API provides programmatic access to the Global Legal Entity Identifier (LEI) System's full data pool. It enables searches by entity name, LEI code, BIC code, ISIN code, and corporate relationship structures. The API is free, open, and requires no authentication or API key. It is built on the GLEIF Golden Copy dataset which is updated three times daily.
   version: 1.0.0
   contact:
     name: GLEIF
@@ -133,6 +131,45 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    PaginationMeta:
+      type: object
+      properties:
+        goldenCopy:
+          type: object
+          properties:
+            publishDate:
+              type: string
+              format: date-time
+        pagination:
+          $ref: '#/components/schemas/PaginationInfo'
+    RegistrationAuthorityListResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/PaginationMeta'
+        links:
+          $ref: '#/components/schemas/PaginationLinks'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/RegistrationAuthority'
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: string
+                description: HTTP status code as string
+              title:
+                type: string
+                description: Short error title
+              detail:
+                type: string
+                description: Detailed error description
     RegistrationAuthority:
       type: object
       properties:
@@ -151,71 +188,24 @@ components:
             internationalName:
               type: string
             localName:
-              type: string
-              nullable: true
+              type:
+              - string
+              - 'null'
             internationalOrganizationName:
               type: string
             localOrganizationName:
-              type: string
-              nullable: true
+              type:
+              - string
+              - 'null'
             website:
-              type: string
+              type:
+              - string
+              - 'null'
               format: uri
-              nullable: true
             jurisdictions:
               type: array
               items:
                 type: object
-    EntityLegalFormListResponse:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/PaginationMeta'
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/EntityLegalForm'
-    RegistrationAuthorityListResponse:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/PaginationMeta'
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/RegistrationAuthority'
-    PaginationMeta:
-      type: object
-      properties:
-        goldenCopy:
-          type: object
-          properties:
-            publishDate:
-              type: string
-              format: date-time
-        pagination:
-          $ref: '#/components/schemas/PaginationInfo'
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              status:
-                type: string
-                description: HTTP status code as string
-              title:
-                type: string
-                description: Short error title
-              detail:
-                type: string
-                description: Detailed error description
     PaginationLinks:
       type: object
       properties:
@@ -228,46 +218,17 @@ components:
         last:
           type: string
           format: uri
-    EntityLegalForm:
+    EntityLegalFormListResponse:
       type: object
       properties:
-        type:
-          type: string
-          example: entity-legal-forms
-        id:
-          type: string
-          description: ELF code
-          example: 09K3
-        attributes:
-          type: object
-          properties:
-            code:
-              type: string
-              example: 09K3
-            country:
-              type: string
-              example: Faroe Islands
-            jurisdiction:
-              type: string
-              nullable: true
-            countryCode:
-              type: string
-              example: FO
-            subdivisionCode:
-              type: string
-              nullable: true
-            dateCreated:
-              type: string
-              format: date
-            status:
-              type: string
-              enum:
-              - ACTV
-              - INAC
-            names:
-              type: array
-              items:
-                type: object
+        meta:
+          $ref: '#/components/schemas/PaginationMeta'
+        links:
+          $ref: '#/components/schemas/PaginationLinks'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityLegalForm'
     PaginationInfo:
       type: object
       properties:
@@ -289,3 +250,45 @@ components:
         lastPage:
           type: integer
           example: 333876
+    EntityLegalForm:
+      type: object
+      properties:
+        type:
+          type: string
+          example: entity-legal-forms
+        id:
+          type: string
+          description: ELF code
+          example: 09K3
+        attributes:
+          type: object
+          properties:
+            code:
+              type: string
+              example: 09K3
+            country:
+              type: string
+              example: Faroe Islands
+            jurisdiction:
+              type:
+              - string
+              - 'null'
+            countryCode:
+              type: string
+              example: FO
+            subdivisionCode:
+              type:
+              - string
+              - 'null'
+            dateCreated:
+              type: string
+              format: date
+            status:
+              type: string
+              enum:
+              - ACTV
+              - INAC
+            names:
+              type: array
+              items:
+                type: object

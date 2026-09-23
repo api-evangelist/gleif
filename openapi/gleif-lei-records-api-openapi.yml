@@ -1,9 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: GLEIF LEI Corporate Relationships LEI Records API
-  description: 'The GLEIF LEI API provides programmatic access to the Global Legal Entity Identifier (LEI) System''s full data pool. It enables searches by entity name, LEI code, BIC code, ISIN code, and corporate relationship structures. The API is free, open, and requires no authentication or API key. It is built on the GLEIF Golden Copy dataset which is updated three times daily.
-
-    '
+  title: GLEIF LEI LEI Records API
+  description: The GLEIF LEI API provides programmatic access to the Global Legal Entity Identifier (LEI) System's full data pool. It enables searches by entity name, LEI code, BIC code, ISIN code, and corporate relationship structures. The API is free, open, and requires no authentication or API key. It is built on the GLEIF Golden Copy dataset which is updated three times daily.
   version: 1.0.0
   contact:
     name: GLEIF
@@ -21,9 +19,7 @@ paths:
   /lei-records:
     get:
       summary: List or search LEI records
-      description: 'Returns a paginated list of LEI records. Supports full-text search, field-specific filters, and fuzzy matching. The Golden Copy dataset is updated three times daily.
-
-        '
+      description: Returns a paginated list of LEI records. Supports full-text search, field-specific filters, and fuzzy matching. The Golden Copy dataset is updated three times daily.
       operationId: listLeiRecords
       tags:
       - LEI Records
@@ -333,17 +329,24 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    LegalName:
+    PaginationMeta:
       type: object
       properties:
-        name:
-          type: string
-          description: The legal name of the entity
-          example: Kommstart 174 AB (publ)
-        language:
-          type: string
-          description: ISO 639-1 language code
-          example: sv
+        goldenCopy:
+          type: object
+          properties:
+            publishDate:
+              type: string
+              format: date-time
+        pagination:
+          $ref: '#/components/schemas/PaginationInfo'
+    LeiRecordSingleResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/GoldenCopyMeta'
+        data:
+          $ref: '#/components/schemas/LeiRecord'
     Registration:
       type: object
       properties:
@@ -387,11 +390,13 @@ components:
             id:
               type: string
             other:
-              type: string
-              nullable: true
+              type:
+              - string
+              - 'null'
         validatedAs:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         otherValidationAuthorities:
           type: array
           items:
@@ -407,6 +412,230 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LeiRecord'
+    LeiRecord:
+      type: object
+      properties:
+        type:
+          type: string
+          example: lei-records
+        id:
+          type: string
+          description: The 20-character LEI code
+          example: 636700STJZG4U8W2I596
+        attributes:
+          $ref: '#/components/schemas/LeiRecordAttributes'
+        relationships:
+          $ref: '#/components/schemas/LeiRecordRelationships'
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+              format: uri
+    LeiIssuerSingleResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/GoldenCopyMeta'
+        data:
+          $ref: '#/components/schemas/LeiIssuer'
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: string
+                description: HTTP status code as string
+              title:
+                type: string
+                description: Short error title
+              detail:
+                type: string
+                description: Detailed error description
+    Entity:
+      type: object
+      properties:
+        legalName:
+          $ref: '#/components/schemas/LegalName'
+        otherNames:
+          type: array
+          items:
+            $ref: '#/components/schemas/LegalName'
+        transliteratedOtherNames:
+          type: array
+          items:
+            $ref: '#/components/schemas/LegalName'
+        legalAddress:
+          $ref: '#/components/schemas/Address'
+        headquartersAddress:
+          $ref: '#/components/schemas/Address'
+        registeredAt:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Registration authority code
+              example: RA000544
+            other:
+              type:
+              - string
+              - 'null'
+        registeredAs:
+          type:
+          - string
+          - 'null'
+          description: The identifier assigned by the registration authority
+        jurisdiction:
+          type: string
+          description: ISO 3166-1 alpha-2 or ISO 3166-2 code
+          example: SE
+        category:
+          type:
+          - string
+          - 'null'
+          enum:
+          - GENERAL
+          - FUND
+          - SUBFUND
+          - BRANCH
+          - SOLE_PROPRIETOR
+          - null
+        legalForm:
+          type: object
+          properties:
+            id:
+              type: string
+              description: ELF code
+            other:
+              type:
+              - string
+              - 'null'
+        associatedEntity:
+          type: object
+          properties:
+            lei:
+              type:
+              - string
+              - 'null'
+            name:
+              type:
+              - string
+              - 'null'
+        status:
+          type: string
+          enum:
+          - ACTIVE
+          - INACTIVE
+          - ANNULLED
+          - DUPLICATE
+          - LAPSED
+          - MERGED
+          - RETIRED
+          - DISSOLVED
+          - BRANCH
+          - FUND
+          - SUBFUND
+          - SOLE_PROPRIETOR
+        expiration:
+          type: object
+          properties:
+            date:
+              type:
+              - string
+              - 'null'
+              format: date-time
+            reason:
+              type:
+              - string
+              - 'null'
+              enum:
+              - DISSOLVED
+              - CORPORATE_ACTION
+              - null
+        successorEntity:
+          type: object
+          properties:
+            lei:
+              type:
+              - string
+              - 'null'
+            name:
+              type:
+              - string
+              - 'null'
+        successorEntities:
+          type: array
+          items:
+            type: object
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        subCategory:
+          type:
+          - string
+          - 'null'
+        otherAddresses:
+          type: array
+          items:
+            type: object
+        eventGroups:
+          type: array
+          items:
+            type: object
+    Address:
+      type: object
+      properties:
+        language:
+          type: string
+          description: ISO 639-1 language code
+          example: en
+        addressLines:
+          type: array
+          items:
+            type: string
+        addressNumber:
+          type:
+          - string
+          - 'null'
+        addressNumberWithinBuilding:
+          type:
+          - string
+          - 'null'
+        mailRouting:
+          type:
+          - string
+          - 'null'
+        city:
+          type: string
+        region:
+          type:
+          - string
+          - 'null'
+          description: ISO 3166-2 region code
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code
+        postalCode:
+          type:
+          - string
+          - 'null'
+    LegalName:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The legal name of the entity
+          example: Kommstart 174 AB (publ)
+        language:
+          type: string
+          description: ISO 639-1 language code
+          example: sv
     LeiRecordRelationships:
       type: object
       properties:
@@ -437,20 +666,29 @@ components:
                 related:
                   type: string
                   format: uri
-    LeiRecordSingleResponse:
+    PaginationLinks:
       type: object
       properties:
-        meta:
-          $ref: '#/components/schemas/GoldenCopyMeta'
-        data:
-          $ref: '#/components/schemas/LeiRecord'
-    LeiIssuerSingleResponse:
+        first:
+          type: string
+          format: uri
+        next:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+    GoldenCopyMeta:
       type: object
       properties:
-        meta:
-          $ref: '#/components/schemas/GoldenCopyMeta'
-        data:
-          $ref: '#/components/schemas/LeiIssuer'
+        goldenCopy:
+          type: object
+          properties:
+            publishDate:
+              type: string
+              format: date-time
+              description: Timestamp of the last Golden Copy publication
+              example: '2026-06-12T08:00:00Z'
     LeiIssuer:
       type: object
       properties:
@@ -471,12 +709,14 @@ components:
               type: string
               example: Central Securities Clearing System PLC
             marketingName:
-              type: string
-              nullable: true
+              type:
+              - string
+              - 'null'
             website:
-              type: string
+              type:
+              - string
+              - 'null'
               format: uri
-              nullable: true
             accreditationDate:
               type: string
               format: date-time
@@ -507,177 +747,46 @@ components:
             self:
               type: string
               format: uri
-    PaginationMeta:
+    LeiRecordAttributes:
       type: object
       properties:
-        goldenCopy:
-          type: object
-          properties:
-            publishDate:
-              type: string
-              format: date-time
-        pagination:
-          $ref: '#/components/schemas/PaginationInfo'
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              status:
-                type: string
-                description: HTTP status code as string
-              title:
-                type: string
-                description: Short error title
-              detail:
-                type: string
-                description: Detailed error description
-    PaginationLinks:
-      type: object
-      properties:
-        first:
+        lei:
           type: string
-          format: uri
-        next:
-          type: string
-          format: uri
-        last:
-          type: string
-          format: uri
-    GoldenCopyMeta:
-      type: object
-      properties:
-        goldenCopy:
-          type: object
-          properties:
-            publishDate:
-              type: string
-              format: date-time
-              description: Timestamp of the last Golden Copy publication
-              example: '2026-06-12T08:00:00Z'
-    Entity:
-      type: object
-      properties:
-        legalName:
-          $ref: '#/components/schemas/LegalName'
-        otherNames:
-          type: array
-          items:
-            $ref: '#/components/schemas/LegalName'
-        transliteratedOtherNames:
-          type: array
-          items:
-            $ref: '#/components/schemas/LegalName'
-        legalAddress:
-          $ref: '#/components/schemas/Address'
-        headquartersAddress:
-          $ref: '#/components/schemas/Address'
-        registeredAt:
-          type: object
-          properties:
-            id:
-              type: string
-              description: Registration authority code
-              example: RA000544
-            other:
-              type: string
-              nullable: true
-        registeredAs:
-          type: string
-          nullable: true
-          description: The identifier assigned by the registration authority
-        jurisdiction:
-          type: string
-          description: ISO 3166-1 alpha-2 or ISO 3166-2 code
-          example: SE
-        category:
-          type: string
-          nullable: true
-          enum:
-          - GENERAL
-          - FUND
-          - SUBFUND
-          - BRANCH
-          - SOLE_PROPRIETOR
-          - null
-        legalForm:
-          type: object
-          properties:
-            id:
-              type: string
-              description: ELF code
-            other:
-              type: string
-              nullable: true
-        associatedEntity:
-          type: object
-          properties:
-            lei:
-              type: string
-              nullable: true
-            name:
-              type: string
-              nullable: true
-        status:
-          type: string
-          enum:
-          - ACTIVE
-          - INACTIVE
-          - ANNULLED
-          - DUPLICATE
-          - LAPSED
-          - MERGED
-          - RETIRED
-          - DISSOLVED
-          - BRANCH
-          - FUND
-          - SUBFUND
-          - SOLE_PROPRIETOR
-        expiration:
-          type: object
-          properties:
-            date:
-              type: string
-              format: date-time
-              nullable: true
-            reason:
-              type: string
-              nullable: true
-              enum:
-              - DISSOLVED
-              - CORPORATE_ACTION
-              - null
-        successorEntity:
-          type: object
-          properties:
-            lei:
-              type: string
-              nullable: true
-            name:
-              type: string
-              nullable: true
-        successorEntities:
-          type: array
-          items:
-            type: object
-        creationDate:
-          type: string
-          format: date-time
-          nullable: true
-        subCategory:
-          type: string
-          nullable: true
-        otherAddresses:
-          type: array
-          items:
-            type: object
-        eventGroups:
-          type: array
-          items:
-            type: object
+          description: The 20-character LEI code
+          pattern: ^[A-Z0-9]{18}[0-9]{2}$
+          example: 636700STJZG4U8W2I596
+        entity:
+          $ref: '#/components/schemas/Entity'
+        registration:
+          $ref: '#/components/schemas/Registration'
+        bic:
+          type:
+          - string
+          - 'null'
+          description: Business Identifier Code (BIC/SWIFT)
+        mic:
+          type:
+          - string
+          - 'null'
+          description: Market Identifier Code (MIC)
+        ocid:
+          type:
+          - string
+          - 'null'
+          description: Open Corporates ID
+        qcc:
+          type:
+          - string
+          - 'null'
+        spglobal:
+          type:
+          - string
+          - 'null'
+          description: S&P Global identifier
+        conformityFlag:
+          type:
+          - string
+          - 'null'
     PaginationInfo:
       type: object
       properties:
@@ -699,89 +808,3 @@ components:
         lastPage:
           type: integer
           example: 333876
-    LeiRecordAttributes:
-      type: object
-      properties:
-        lei:
-          type: string
-          description: The 20-character LEI code
-          pattern: ^[A-Z0-9]{18}[0-9]{2}$
-          example: 636700STJZG4U8W2I596
-        entity:
-          $ref: '#/components/schemas/Entity'
-        registration:
-          $ref: '#/components/schemas/Registration'
-        bic:
-          type: string
-          nullable: true
-          description: Business Identifier Code (BIC/SWIFT)
-        mic:
-          type: string
-          nullable: true
-          description: Market Identifier Code (MIC)
-        ocid:
-          type: string
-          nullable: true
-          description: Open Corporates ID
-        qcc:
-          type: string
-          nullable: true
-        spglobal:
-          type: string
-          nullable: true
-          description: S&P Global identifier
-        conformityFlag:
-          type: string
-          nullable: true
-    LeiRecord:
-      type: object
-      properties:
-        type:
-          type: string
-          example: lei-records
-        id:
-          type: string
-          description: The 20-character LEI code
-          example: 636700STJZG4U8W2I596
-        attributes:
-          $ref: '#/components/schemas/LeiRecordAttributes'
-        relationships:
-          $ref: '#/components/schemas/LeiRecordRelationships'
-        links:
-          type: object
-          properties:
-            self:
-              type: string
-              format: uri
-    Address:
-      type: object
-      properties:
-        language:
-          type: string
-          description: ISO 639-1 language code
-          example: en
-        addressLines:
-          type: array
-          items:
-            type: string
-        addressNumber:
-          type: string
-          nullable: true
-        addressNumberWithinBuilding:
-          type: string
-          nullable: true
-        mailRouting:
-          type: string
-          nullable: true
-        city:
-          type: string
-        region:
-          type: string
-          nullable: true
-          description: ISO 3166-2 region code
-        country:
-          type: string
-          description: ISO 3166-1 alpha-2 country code
-        postalCode:
-          type: string
-          nullable: true

@@ -1,9 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: GLEIF LEI Corporate Relationships Search API
-  description: 'The GLEIF LEI API provides programmatic access to the Global Legal Entity Identifier (LEI) System''s full data pool. It enables searches by entity name, LEI code, BIC code, ISIN code, and corporate relationship structures. The API is free, open, and requires no authentication or API key. It is built on the GLEIF Golden Copy dataset which is updated three times daily.
-
-    '
+  title: GLEIF LEI Search API
+  description: The GLEIF LEI API provides programmatic access to the Global Legal Entity Identifier (LEI) System's full data pool. It enables searches by entity name, LEI code, BIC code, ISIN code, and corporate relationship structures. The API is free, open, and requires no authentication or API key. It is built on the GLEIF Golden Copy dataset which is updated three times daily.
   version: 1.0.0
   contact:
     name: GLEIF
@@ -21,9 +19,7 @@ paths:
   /fuzzycompletions:
     get:
       summary: Fuzzy autocomplete suggestions
-      description: 'Returns fuzzy-matched autocomplete suggestions for entity names and addresses. Useful for building typeahead search UI components.
-
-        '
+      description: Returns fuzzy-matched autocomplete suggestions for entity names and addresses. Useful for building typeahead search UI components.
       operationId: getFuzzyCompletions
       tags:
       - Search
