@@ -192,6 +192,18 @@ components:
           $ref: '#/components/schemas/GoldenCopyMeta'
         data:
           $ref: '#/components/schemas/LeiIssuer'
+    PaginationLinks:
+      type: object
+      properties:
+        first:
+          type: string
+          format: uri
+        next:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
     ErrorResponse:
       type: object
       properties:
@@ -209,40 +221,6 @@ components:
               detail:
                 type: string
                 description: Detailed error description
-    LeiIssuerListResponse:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/PaginationMeta'
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/LeiIssuer'
-    PaginationLinks:
-      type: object
-      properties:
-        first:
-          type: string
-          format: uri
-        next:
-          type: string
-          format: uri
-        last:
-          type: string
-          format: uri
-    GoldenCopyMeta:
-      type: object
-      properties:
-        goldenCopy:
-          type: object
-          properties:
-            publishDate:
-              type: string
-              format: date-time
-              description: Timestamp of the last Golden Copy publication
-              example: '2026-06-12T08:00:00Z'
     LeiIssuer:
       type: object
       properties:
@@ -322,3 +300,25 @@ components:
         lastPage:
           type: integer
           example: 333876
+    LeiIssuerListResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/PaginationMeta'
+        links:
+          $ref: '#/components/schemas/PaginationLinks'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/LeiIssuer'
+    GoldenCopyMeta:
+      type: object
+      properties:
+        goldenCopy:
+          type: object
+          properties:
+            publishDate:
+              type: string
+              format: date-time
+              description: Timestamp of the last Golden Copy publication
+              example: '2026-06-12T08:00:00Z'

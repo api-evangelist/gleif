@@ -142,114 +142,6 @@ components:
               format: date-time
         pagination:
           $ref: '#/components/schemas/PaginationInfo'
-    RegistrationAuthorityListResponse:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/PaginationMeta'
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/RegistrationAuthority'
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              status:
-                type: string
-                description: HTTP status code as string
-              title:
-                type: string
-                description: Short error title
-              detail:
-                type: string
-                description: Detailed error description
-    RegistrationAuthority:
-      type: object
-      properties:
-        type:
-          type: string
-          example: registration-authorities
-        id:
-          type: string
-          example: RA000001
-        attributes:
-          type: object
-          properties:
-            code:
-              type: string
-              example: RA000001
-            internationalName:
-              type: string
-            localName:
-              type:
-              - string
-              - 'null'
-            internationalOrganizationName:
-              type: string
-            localOrganizationName:
-              type:
-              - string
-              - 'null'
-            website:
-              type:
-              - string
-              - 'null'
-              format: uri
-            jurisdictions:
-              type: array
-              items:
-                type: object
-    PaginationLinks:
-      type: object
-      properties:
-        first:
-          type: string
-          format: uri
-        next:
-          type: string
-          format: uri
-        last:
-          type: string
-          format: uri
-    EntityLegalFormListResponse:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/PaginationMeta'
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/EntityLegalForm'
-    PaginationInfo:
-      type: object
-      properties:
-        currentPage:
-          type: integer
-          example: 1
-        perPage:
-          type: integer
-          example: 10
-        from:
-          type: integer
-          example: 1
-        to:
-          type: integer
-          example: 10
-        total:
-          type: integer
-          example: 3338758
-        lastPage:
-          type: integer
-          example: 333876
     EntityLegalForm:
       type: object
       properties:
@@ -292,3 +184,111 @@ components:
               type: array
               items:
                 type: object
+    PaginationLinks:
+      type: object
+      properties:
+        first:
+          type: string
+          format: uri
+        next:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+    RegistrationAuthority:
+      type: object
+      properties:
+        type:
+          type: string
+          example: registration-authorities
+        id:
+          type: string
+          example: RA000001
+        attributes:
+          type: object
+          properties:
+            code:
+              type: string
+              example: RA000001
+            internationalName:
+              type: string
+            localName:
+              type:
+              - string
+              - 'null'
+            internationalOrganizationName:
+              type: string
+            localOrganizationName:
+              type:
+              - string
+              - 'null'
+            website:
+              type:
+              - string
+              - 'null'
+              format: uri
+            jurisdictions:
+              type: array
+              items:
+                type: object
+    RegistrationAuthorityListResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/PaginationMeta'
+        links:
+          $ref: '#/components/schemas/PaginationLinks'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/RegistrationAuthority'
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: string
+                description: HTTP status code as string
+              title:
+                type: string
+                description: Short error title
+              detail:
+                type: string
+                description: Detailed error description
+    EntityLegalFormListResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/PaginationMeta'
+        links:
+          $ref: '#/components/schemas/PaginationLinks'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityLegalForm'
+    PaginationInfo:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+          example: 1
+        perPage:
+          type: integer
+          example: 10
+        from:
+          type: integer
+          example: 1
+        to:
+          type: integer
+          example: 10
+        total:
+          type: integer
+          example: 3338758
+        lastPage:
+          type: integer
+          example: 333876

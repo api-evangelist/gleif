@@ -96,6 +96,26 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    LeiRecord:
+      type: object
+      properties:
+        type:
+          type: string
+          example: lei-records
+        id:
+          type: string
+          description: The 20-character LEI code
+          example: 636700STJZG4U8W2I596
+        attributes:
+          $ref: '#/components/schemas/LeiRecordAttributes'
+        relationships:
+          $ref: '#/components/schemas/LeiRecordRelationships'
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+              format: uri
     PaginationMeta:
       type: object
       properties:
@@ -107,6 +127,40 @@ components:
               format: date-time
         pagination:
           $ref: '#/components/schemas/PaginationInfo'
+    LeiRecordListResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/PaginationMeta'
+        links:
+          $ref: '#/components/schemas/PaginationLinks'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/LeiRecord'
+    LegalName:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The legal name of the entity
+          example: Kommstart 174 AB (publ)
+        language:
+          type: string
+          description: ISO 639-1 language code
+          example: sv
+    PaginationLinks:
+      type: object
+      properties:
+        first:
+          type: string
+          format: uri
+        next:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
     Registration:
       type: object
       properties:
@@ -161,37 +215,36 @@ components:
           type: array
           items:
             type: object
-    LeiRecordListResponse:
+    LeiRecordRelationships:
       type: object
       properties:
-        meta:
-          $ref: '#/components/schemas/PaginationMeta'
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/LeiRecord'
-    LeiRecord:
-      type: object
-      properties:
-        type:
-          type: string
-          example: lei-records
-        id:
-          type: string
-          description: The 20-character LEI code
-          example: 636700STJZG4U8W2I596
-        attributes:
-          $ref: '#/components/schemas/LeiRecordAttributes'
-        relationships:
-          $ref: '#/components/schemas/LeiRecordRelationships'
-        links:
+        managing-lou:
           type: object
           properties:
-            self:
-              type: string
-              format: uri
+            links:
+              type: object
+              properties:
+                related:
+                  type: string
+                  format: uri
+        lei-issuer:
+          type: object
+          properties:
+            links:
+              type: object
+              properties:
+                related:
+                  type: string
+                  format: uri
+        field-modifications:
+          type: object
+          properties:
+            links:
+              type: object
+              properties:
+                related:
+                  type: string
+                  format: uri
     Entity:
       type: object
       properties:
@@ -324,53 +377,6 @@ components:
           type: array
           items:
             type: object
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              status:
-                type: string
-                description: HTTP status code as string
-              title:
-                type: string
-                description: Short error title
-              detail:
-                type: string
-                description: Detailed error description
-    LeiRecordRelationships:
-      type: object
-      properties:
-        managing-lou:
-          type: object
-          properties:
-            links:
-              type: object
-              properties:
-                related:
-                  type: string
-                  format: uri
-        lei-issuer:
-          type: object
-          properties:
-            links:
-              type: object
-              properties:
-                related:
-                  type: string
-                  format: uri
-        field-modifications:
-          type: object
-          properties:
-            links:
-              type: object
-              properties:
-                related:
-                  type: string
-                  format: uri
     Address:
       type: object
       properties:
@@ -408,29 +414,44 @@ components:
           type:
           - string
           - 'null'
-    LegalName:
+    ErrorResponse:
       type: object
       properties:
-        name:
-          type: string
-          description: The legal name of the entity
-          example: Kommstart 174 AB (publ)
-        language:
-          type: string
-          description: ISO 639-1 language code
-          example: sv
-    PaginationLinks:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: string
+                description: HTTP status code as string
+              title:
+                type: string
+                description: Short error title
+              detail:
+                type: string
+                description: Detailed error description
+    PaginationInfo:
       type: object
       properties:
-        first:
-          type: string
-          format: uri
-        next:
-          type: string
-          format: uri
-        last:
-          type: string
-          format: uri
+        currentPage:
+          type: integer
+          example: 1
+        perPage:
+          type: integer
+          example: 10
+        from:
+          type: integer
+          example: 1
+        to:
+          type: integer
+          example: 10
+        total:
+          type: integer
+          example: 3338758
+        lastPage:
+          type: integer
+          example: 333876
     LeiRecordAttributes:
       type: object
       properties:
@@ -471,24 +492,3 @@ components:
           type:
           - string
           - 'null'
-    PaginationInfo:
-      type: object
-      properties:
-        currentPage:
-          type: integer
-          example: 1
-        perPage:
-          type: integer
-          example: 10
-        from:
-          type: integer
-          example: 1
-        to:
-          type: integer
-          example: 10
-        total:
-          type: integer
-          example: 3338758
-        lastPage:
-          type: integer
-          example: 333876
