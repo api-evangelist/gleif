@@ -96,37 +96,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    LeiRecord:
-      type: object
-      properties:
-        type:
-          type: string
-          example: lei-records
-        id:
-          type: string
-          description: The 20-character LEI code
-          example: 636700STJZG4U8W2I596
-        attributes:
-          $ref: '#/components/schemas/LeiRecordAttributes'
-        relationships:
-          $ref: '#/components/schemas/LeiRecordRelationships'
-        links:
-          type: object
-          properties:
-            self:
-              type: string
-              format: uri
-    PaginationMeta:
-      type: object
-      properties:
-        goldenCopy:
-          type: object
-          properties:
-            publishDate:
-              type: string
-              format: date-time
-        pagination:
-          $ref: '#/components/schemas/PaginationInfo'
     LeiRecordListResponse:
       type: object
       properties:
@@ -138,29 +107,97 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LeiRecord'
-    LegalName:
+    LeiRecordAttributes:
       type: object
       properties:
-        name:
+        lei:
           type: string
-          description: The legal name of the entity
-          example: Kommstart 174 AB (publ)
-        language:
-          type: string
-          description: ISO 639-1 language code
-          example: sv
-    PaginationLinks:
+          description: The 20-character LEI code
+          pattern: ^[A-Z0-9]{18}[0-9]{2}$
+          example: 636700STJZG4U8W2I596
+        entity:
+          $ref: '#/components/schemas/Entity'
+        registration:
+          $ref: '#/components/schemas/Registration'
+        bic:
+          type:
+          - string
+          - 'null'
+          description: Business Identifier Code (BIC/SWIFT)
+        mic:
+          type:
+          - string
+          - 'null'
+          description: Market Identifier Code (MIC)
+        ocid:
+          type:
+          - string
+          - 'null'
+          description: Open Corporates ID
+        qcc:
+          type:
+          - string
+          - 'null'
+        spglobal:
+          type:
+          - string
+          - 'null'
+          description: S&P Global identifier
+        conformityFlag:
+          type:
+          - string
+          - 'null'
+    LeiRecordRelationships:
       type: object
       properties:
-        first:
-          type: string
-          format: uri
-        next:
-          type: string
-          format: uri
-        last:
-          type: string
-          format: uri
+        managing-lou:
+          type: object
+          properties:
+            links:
+              type: object
+              properties:
+                related:
+                  type: string
+                  format: uri
+        lei-issuer:
+          type: object
+          properties:
+            links:
+              type: object
+              properties:
+                related:
+                  type: string
+                  format: uri
+        field-modifications:
+          type: object
+          properties:
+            links:
+              type: object
+              properties:
+                related:
+                  type: string
+                  format: uri
+    PaginationInfo:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+          example: 1
+        perPage:
+          type: integer
+          example: 10
+        from:
+          type: integer
+          example: 1
+        to:
+          type: integer
+          example: 10
+        total:
+          type: integer
+          example: 3338758
+        lastPage:
+          type: integer
+          example: 333876
     Registration:
       type: object
       properties:
@@ -215,36 +252,75 @@ components:
           type: array
           items:
             type: object
-    LeiRecordRelationships:
+    PaginationLinks:
       type: object
       properties:
-        managing-lou:
+        first:
+          type: string
+          format: uri
+        next:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+    LeiRecord:
+      type: object
+      properties:
+        type:
+          type: string
+          example: lei-records
+        id:
+          type: string
+          description: The 20-character LEI code
+          example: 636700STJZG4U8W2I596
+        attributes:
+          $ref: '#/components/schemas/LeiRecordAttributes'
+        relationships:
+          $ref: '#/components/schemas/LeiRecordRelationships'
+        links:
           type: object
           properties:
-            links:
-              type: object
-              properties:
-                related:
-                  type: string
-                  format: uri
-        lei-issuer:
-          type: object
-          properties:
-            links:
-              type: object
-              properties:
-                related:
-                  type: string
-                  format: uri
-        field-modifications:
-          type: object
-          properties:
-            links:
-              type: object
-              properties:
-                related:
-                  type: string
-                  format: uri
+            self:
+              type: string
+              format: uri
+    Address:
+      type: object
+      properties:
+        language:
+          type: string
+          description: ISO 639-1 language code
+          example: en
+        addressLines:
+          type: array
+          items:
+            type: string
+        addressNumber:
+          type:
+          - string
+          - 'null'
+        addressNumberWithinBuilding:
+          type:
+          - string
+          - 'null'
+        mailRouting:
+          type:
+          - string
+          - 'null'
+        city:
+          type: string
+        region:
+          type:
+          - string
+          - 'null'
+          description: ISO 3166-2 region code
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code
+        postalCode:
+          type:
+          - string
+          - 'null'
     Entity:
       type: object
       properties:
@@ -377,43 +453,6 @@ components:
           type: array
           items:
             type: object
-    Address:
-      type: object
-      properties:
-        language:
-          type: string
-          description: ISO 639-1 language code
-          example: en
-        addressLines:
-          type: array
-          items:
-            type: string
-        addressNumber:
-          type:
-          - string
-          - 'null'
-        addressNumberWithinBuilding:
-          type:
-          - string
-          - 'null'
-        mailRouting:
-          type:
-          - string
-          - 'null'
-        city:
-          type: string
-        region:
-          type:
-          - string
-          - 'null'
-          description: ISO 3166-2 region code
-        country:
-          type: string
-          description: ISO 3166-1 alpha-2 country code
-        postalCode:
-          type:
-          - string
-          - 'null'
     ErrorResponse:
       type: object
       properties:
@@ -431,64 +470,25 @@ components:
               detail:
                 type: string
                 description: Detailed error description
-    PaginationInfo:
+    PaginationMeta:
       type: object
       properties:
-        currentPage:
-          type: integer
-          example: 1
-        perPage:
-          type: integer
-          example: 10
-        from:
-          type: integer
-          example: 1
-        to:
-          type: integer
-          example: 10
-        total:
-          type: integer
-          example: 3338758
-        lastPage:
-          type: integer
-          example: 333876
-    LeiRecordAttributes:
+        goldenCopy:
+          type: object
+          properties:
+            publishDate:
+              type: string
+              format: date-time
+        pagination:
+          $ref: '#/components/schemas/PaginationInfo'
+    LegalName:
       type: object
       properties:
-        lei:
+        name:
           type: string
-          description: The 20-character LEI code
-          pattern: ^[A-Z0-9]{18}[0-9]{2}$
-          example: 636700STJZG4U8W2I596
-        entity:
-          $ref: '#/components/schemas/Entity'
-        registration:
-          $ref: '#/components/schemas/Registration'
-        bic:
-          type:
-          - string
-          - 'null'
-          description: Business Identifier Code (BIC/SWIFT)
-        mic:
-          type:
-          - string
-          - 'null'
-          description: Market Identifier Code (MIC)
-        ocid:
-          type:
-          - string
-          - 'null'
-          description: Open Corporates ID
-        qcc:
-          type:
-          - string
-          - 'null'
-        spglobal:
-          type:
-          - string
-          - 'null'
-          description: S&P Global identifier
-        conformityFlag:
-          type:
-          - string
-          - 'null'
+          description: The legal name of the entity
+          example: Kommstart 174 AB (publ)
+        language:
+          type: string
+          description: ISO 639-1 language code
+          example: sv
