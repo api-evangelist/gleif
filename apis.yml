@@ -152,6 +152,9 @@ apis:
   - type: Examples
     url: examples/gleif-lei-records-list-example.json
 common:
+  - type: CapabilityMap
+    url: capabilities/gleif-capability-edges.yml
+    name: GLEIF Business Capability Map
   - type: AgenticAccess
     url: agentic-access/gleif-agentic-access.yml
   - type: DomainSecurity
