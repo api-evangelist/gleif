@@ -329,6 +329,124 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    LeiIssuerSingleResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/GoldenCopyMeta'
+        data:
+          $ref: '#/components/schemas/LeiIssuer'
+    LeiRecordAttributes:
+      type: object
+      properties:
+        lei:
+          type: string
+          description: The 20-character LEI code
+          pattern: ^[A-Z0-9]{18}[0-9]{2}$
+          example: 636700STJZG4U8W2I596
+        entity:
+          $ref: '#/components/schemas/Entity'
+        registration:
+          $ref: '#/components/schemas/Registration'
+        bic:
+          type:
+          - string
+          - 'null'
+          description: Business Identifier Code (BIC/SWIFT)
+        mic:
+          type:
+          - string
+          - 'null'
+          description: Market Identifier Code (MIC)
+        ocid:
+          type:
+          - string
+          - 'null'
+          description: Open Corporates ID
+        qcc:
+          type:
+          - string
+          - 'null'
+        spglobal:
+          type:
+          - string
+          - 'null'
+          description: S&P Global identifier
+        conformityFlag:
+          type:
+          - string
+          - 'null'
+    LeiRecordListResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/PaginationMeta'
+        links:
+          $ref: '#/components/schemas/PaginationLinks'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/LeiRecord'
+    Address:
+      type: object
+      properties:
+        language:
+          type: string
+          description: ISO 639-1 language code
+          example: en
+        addressLines:
+          type: array
+          items:
+            type: string
+        addressNumber:
+          type:
+          - string
+          - 'null'
+        addressNumberWithinBuilding:
+          type:
+          - string
+          - 'null'
+        mailRouting:
+          type:
+          - string
+          - 'null'
+        city:
+          type: string
+        region:
+          type:
+          - string
+          - 'null'
+          description: ISO 3166-2 region code
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code
+        postalCode:
+          type:
+          - string
+          - 'null'
+    GoldenCopyMeta:
+      type: object
+      properties:
+        goldenCopy:
+          type: object
+          properties:
+            publishDate:
+              type: string
+              format: date-time
+              description: Timestamp of the last Golden Copy publication
+              example: '2026-06-12T08:00:00Z'
+    PaginationLinks:
+      type: object
+      properties:
+        first:
+          type: string
+          format: uri
+        next:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
     LeiRecordRelationships:
       type: object
       properties:
@@ -359,24 +477,34 @@ components:
                 related:
                   type: string
                   format: uri
-    LeiRecordListResponse:
+    ErrorResponse:
       type: object
       properties:
-        meta:
-          $ref: '#/components/schemas/PaginationMeta'
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        data:
+        errors:
           type: array
           items:
-            $ref: '#/components/schemas/LeiRecord'
-    LeiIssuerSingleResponse:
+            type: object
+            properties:
+              status:
+                type: string
+                description: HTTP status code as string
+              title:
+                type: string
+                description: Short error title
+              detail:
+                type: string
+                description: Detailed error description
+    LegalName:
       type: object
       properties:
-        meta:
-          $ref: '#/components/schemas/GoldenCopyMeta'
-        data:
-          $ref: '#/components/schemas/LeiIssuer'
+        name:
+          type: string
+          description: The legal name of the entity
+          example: Kommstart 174 AB (publ)
+        language:
+          type: string
+          description: ISO 639-1 language code
+          example: sv
     Registration:
       type: object
       properties:
@@ -431,57 +559,13 @@ components:
           type: array
           items:
             type: object
-    GoldenCopyMeta:
+    LeiRecordSingleResponse:
       type: object
       properties:
-        goldenCopy:
-          type: object
-          properties:
-            publishDate:
-              type: string
-              format: date-time
-              description: Timestamp of the last Golden Copy publication
-              example: '2026-06-12T08:00:00Z'
-    LeiRecordAttributes:
-      type: object
-      properties:
-        lei:
-          type: string
-          description: The 20-character LEI code
-          pattern: ^[A-Z0-9]{18}[0-9]{2}$
-          example: 636700STJZG4U8W2I596
-        entity:
-          $ref: '#/components/schemas/Entity'
-        registration:
-          $ref: '#/components/schemas/Registration'
-        bic:
-          type:
-          - string
-          - 'null'
-          description: Business Identifier Code (BIC/SWIFT)
-        mic:
-          type:
-          - string
-          - 'null'
-          description: Market Identifier Code (MIC)
-        ocid:
-          type:
-          - string
-          - 'null'
-          description: Open Corporates ID
-        qcc:
-          type:
-          - string
-          - 'null'
-        spglobal:
-          type:
-          - string
-          - 'null'
-          description: S&P Global identifier
-        conformityFlag:
-          type:
-          - string
-          - 'null'
+        meta:
+          $ref: '#/components/schemas/GoldenCopyMeta'
+        data:
+          $ref: '#/components/schemas/LeiRecord'
     Entity:
       type: object
       properties:
@@ -614,50 +698,27 @@ components:
           type: array
           items:
             type: object
-    Address:
+    PaginationInfo:
       type: object
       properties:
-        language:
-          type: string
-          description: ISO 639-1 language code
-          example: en
-        addressLines:
-          type: array
-          items:
-            type: string
-        addressNumber:
-          type:
-          - string
-          - 'null'
-        addressNumberWithinBuilding:
-          type:
-          - string
-          - 'null'
-        mailRouting:
-          type:
-          - string
-          - 'null'
-        city:
-          type: string
-        region:
-          type:
-          - string
-          - 'null'
-          description: ISO 3166-2 region code
-        country:
-          type: string
-          description: ISO 3166-1 alpha-2 country code
-        postalCode:
-          type:
-          - string
-          - 'null'
-    LeiRecordSingleResponse:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/GoldenCopyMeta'
-        data:
-          $ref: '#/components/schemas/LeiRecord'
+        currentPage:
+          type: integer
+          example: 1
+        perPage:
+          type: integer
+          example: 10
+        from:
+          type: integer
+          example: 1
+        to:
+          type: integer
+          example: 10
+        total:
+          type: integer
+          example: 3338758
+        lastPage:
+          type: integer
+          example: 333876
     LeiRecord:
       type: object
       properties:
@@ -678,28 +739,6 @@ components:
             self:
               type: string
               format: uri
-    LegalName:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The legal name of the entity
-          example: Kommstart 174 AB (publ)
-        language:
-          type: string
-          description: ISO 639-1 language code
-          example: sv
-    PaginationMeta:
-      type: object
-      properties:
-        goldenCopy:
-          type: object
-          properties:
-            publishDate:
-              type: string
-              format: date-time
-        pagination:
-          $ref: '#/components/schemas/PaginationInfo'
     LeiIssuer:
       type: object
       properties:
@@ -758,53 +797,14 @@ components:
             self:
               type: string
               format: uri
-    ErrorResponse:
+    PaginationMeta:
       type: object
       properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              status:
-                type: string
-                description: HTTP status code as string
-              title:
-                type: string
-                description: Short error title
-              detail:
-                type: string
-                description: Detailed error description
-    PaginationInfo:
-      type: object
-      properties:
-        currentPage:
-          type: integer
-          example: 1
-        perPage:
-          type: integer
-          example: 10
-        from:
-          type: integer
-          example: 1
-        to:
-          type: integer
-          example: 10
-        total:
-          type: integer
-          example: 3338758
-        lastPage:
-          type: integer
-          example: 333876
-    PaginationLinks:
-      type: object
-      properties:
-        first:
-          type: string
-          format: uri
-        next:
-          type: string
-          format: uri
-        last:
-          type: string
-          format: uri
+        goldenCopy:
+          type: object
+          properties:
+            publishDate:
+              type: string
+              format: date-time
+        pagination:
+          $ref: '#/components/schemas/PaginationInfo'
